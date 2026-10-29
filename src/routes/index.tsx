@@ -4,9 +4,9 @@ import { useEffect, useState, type FormEvent } from "react";
 // Troque pelo número real (com DDI 55 + DDD), só dígitos.
 const WHATSAPP = "5511999999999";
 
-const TITLE = "Black Friday: 20 Lentes em Resina por R$ 2.199 | Até 56% OFF";
+const TITLE = "Black Friday: Lentes em Resina Estratificada a partir de R$ 2.900 | Até 47% OFF";
 const DESC =
-  "Lentes em resina sem desgaste, prontas em 3h, 10 anos de garantia e 12x sem juros. Cupom SORRISOBLACKFRIDAY. Restam só 4 horários na agenda da Black Friday.";
+  "Lentes em resina sem desgaste na técnica estratificada realista, prontas em 3h, 10 anos de garantia e 12x sem juros. Cupom SORRISOBLACKFRIDAY. Restam só 4 horários na agenda da Black Friday.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -65,17 +65,17 @@ function Index() {
       {/* Hero */}
       <header className="px-5 pt-8 text-center">
         <p className="inline-block rounded-full border border-primary/40 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-primary">
-          Black Friday — até 56% OFF
+          Black Friday — até 47% OFF
         </p>
         <h1 className="mt-4 font-display text-5xl leading-[0.95]">
-          Lentes em resina <span className="text-gold">sem desgaste</span>
+          Lentes em resina <span className="text-gold">sem desgaste</span> na técnica <span className="text-gold">estratificada realista</span>
         </h1>
         <p className="mt-4 text-lg">
-          20 lentes de <s className="text-muted-foreground">R$ 5.000</s> por{" "}
-          <strong className="text-gold text-2xl">R$ 2.199</strong>
+          20 lentes de <s className="text-muted-foreground">R$ 8.998</s> por{" "}
+          <strong className="text-gold text-2xl">R$ 5.500</strong>
         </p>
         <p className="mt-2 text-sm text-muted-foreground">
-          + 1ª manutenção de brinde + limpeza prévia de cortesia
+          Camadas de resina que imitam a cor e o brilho natural do dente. Resultado realista, sem desgastar seus dentes. + 1ª manutenção de brinde + limpeza prévia
         </p>
         <div className="mt-5 grid grid-cols-3 gap-2 text-xs font-semibold">
           {["⏱️ Pronto em 3h", "🛡️ 10 anos de garantia", "💳 12x sem juros"].map((b) => (
@@ -115,27 +115,28 @@ function Index() {
           <Offer
             tag="Mais procurado"
             title="10 Lentes"
-            from="R$ 3.500"
-            price="R$ 1.749"
-            inst="12x de R$ 175 sem juros"
-            save="R$ 1.751"
+            from="R$ 5.489"
+            price="R$ 2.900"
+            inst="12x de R$ 241,67 sem juros"
+            save="R$ 2.589"
           />
           <Offer
             highlight
             tag="Resultado completo"
             title="20 Lentes — sorriso completo"
-            from="R$ 5.000"
-            price="R$ 2.199"
-            inst="12x de R$ 183,25 sem juros"
-            save="R$ 2.801"
+            from="R$ 8.998"
+            price="R$ 5.500"
+            inst="12x de R$ 458,33 sem juros"
+            save="R$ 3.498"
           />
         </div>
         <ul className="mt-6 space-y-2 rounded-2xl bg-card p-5 text-sm">
           {[
             "10 anos de garantia em contrato",
-            "Limpeza pré-instalação inclusa",
-            "1ª manutenção de cortesia",
-            "Procedimento pronto em 3 horas",
+            "Pronto em 3 horas",
+            "Limpeza prévia antes da instalação das lentes",
+            "1ª manutenção de brinde",
+            "Até 12x sem juros",
           ].map((i) => (
             <li key={i}>✅ {i}</li>
           ))}
@@ -155,7 +156,7 @@ function Index() {
           profissionais experientes —{" "}
           <strong className="text-accent">NÃO é realizado por dentistas iniciantes.</strong>
         </p>
-        <p className="mt-3 text-sm font-semibold">Depois da Black Friday, os valores voltam para R$ 3.500 e R$ 5.000. Restam só 4 horários.</p>
+        <p className="mt-3 text-sm font-semibold">Depois da Black Friday, os valores voltam para R$ 5.489 e R$ 8.998. Restam só 4 horários.</p>
       </section>
 
       {/* Como funciona */}
@@ -256,7 +257,7 @@ function Index() {
           Daqui a pouco <span className="text-gold">esse preço não existe mais</span>
         </h2>
         <p className="mt-3 text-sm text-muted-foreground">
-          Quem deixar pra depois vai pagar R$ 5.000 pelo mesmo sorriso. Cupom{" "}
+          Quem deixar pra depois vai pagar R$ 8.998 pelo mesmo sorriso. Cupom{" "}
           <strong className="text-primary">SORRISO BLACK FRIDAY</strong>. Agenda quase lotada.
         </p>
         <div className="mt-5">
@@ -274,7 +275,7 @@ function Index() {
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/95 p-3 backdrop-blur">
         <div className="mx-auto max-w-md">
           <a href="#vaga" className="btn-cta text-sm" style={{ animation: "none" }}>
-            Garantir desconto • 20 lentes R$ 2.199
+            Garantir desconto • 20 lentes R$ 5.500
           </a>
         </div>
       </div>
@@ -346,7 +347,7 @@ function LeadForm() {
   const submit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const f = new FormData(e.currentTarget);
-    const msg = `Olá! Quero garantir meu desconto de Black Friday (20 lentes por R$ 2.199, cupom SORRISOBLACKFRIDAY).\n\nNome: ${f.get("nome")}\nWhatsApp: ${f.get("whats")}\nE-mail: ${f.get("email")}\nUnidade: ${f.get("unidade")}`;
+    const msg = `Olá! Quero garantir meu desconto de Black Friday (20 lentes por R$ 5.500, cupom SORRISOBLACKFRIDAY).\n\nNome: ${f.get("nome")}\nWhatsApp: ${f.get("whats")}\nE-mail: ${f.get("email")}\nUnidade: ${f.get("unidade")}`;
     window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank");
   };
   const input =
@@ -357,7 +358,7 @@ function LeadForm() {
         Atenção — o desconto acaba quando o cronômetro zerar
       </p>
       <h2 className="mt-2 font-display text-4xl leading-none">
-        Sua última oportunidade: de R$ 5.000 por <span className="text-gold">R$ 2.199</span>
+        Sua última oportunidade: de R$ 8.998 por <span className="text-gold">R$ 5.500</span>
       </h2>
       <p className="mt-3 text-sm text-muted-foreground">
         Restam só 4 horários na agenda da Black Friday, preenchidos por ordem de chegada. Quem sair agora perde o desconto.
@@ -444,19 +445,19 @@ function Loss() {
   return (
     <section className="mx-5 mt-10 text-center">
       <h2 className="font-display text-4xl leading-none">
-        Não deixe <span className="text-accent">R$ 2.801</span> na mesa
+        Não deixe <span className="text-accent">R$ 3.498</span> na mesa
       </h2>
       <div className="mt-5 grid grid-cols-2 gap-3 text-sm">
         <div className="rounded-xl border-2 border-primary bg-card p-4">
           <p className="text-xs text-muted-foreground">Agendando agora</p>
-          <p className="text-gold font-display text-4xl">R$ 2.199</p>
+          <p className="text-gold font-display text-4xl">R$ 5.500</p>
         </div>
         <div className="rounded-xl border border-border bg-card p-4 opacity-80">
           <p className="text-xs text-muted-foreground">Depois da Black Friday</p>
-          <p className="font-display text-4xl line-through">R$ 5.000</p>
+          <p className="font-display text-4xl line-through">R$ 8.998</p>
         </div>
       </div>
-      <p className="mt-3 text-sm font-semibold text-accent">Se deixar passar, você perde R$ 2.801.</p>
+      <p className="mt-3 text-sm font-semibold text-accent">Se deixar passar, você perde R$ 3.498.</p>
     </section>
   );
 }
