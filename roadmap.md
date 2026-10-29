@@ -1,0 +1,3 @@
+- [ ] Direcionar todos os botões da campanha ao formulário obrigatório.
+- [ ] Qualificar o prazo e separar WhatsApp de agradecimento.
+- [ ] Validar os dados e testar os dois caminhos.
