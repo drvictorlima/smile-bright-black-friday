@@ -28,10 +28,10 @@ describe("Required scheduling qualification", () => {
   });
   it.each([["10", "R$ 2.899", "12x de R$ 241,58"], ["20", "R$ 5.498", "12x de R$ 458,17"]])("sends the selected %s lenses with their exact price and installments", (lentes, price, installments) => {
     const message = decodeURIComponent(whatsappUrl({ ...lead, lentes }, "5511912686897") ?? "");
-    expect(message).toContain(`Quantidade: ${lentes} lentes`);
+    expect(message).toContain(`Pacote: até ${lentes} lentes`);
     expect(message).toContain(`Valor: ${price}`);
     expect(message).toContain(installments);
-    expect(message).toContain(`Estou ciente do valor de ${price} para ${lentes} lentes`);
+    expect(message).toContain(`Estou ciente do valor de ${price} para até ${lentes} lentes`);
   });
   it("includes all contact details, this week and the BLACKFRIDAY coupon", () => {
     const message = decodeURIComponent(whatsappUrl(lead, "5511912686897") ?? "");
