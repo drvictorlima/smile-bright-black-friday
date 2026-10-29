@@ -99,6 +99,41 @@ function Index() {
 
       <Coupon />
 
+      {/* Exclusividades */}
+      <section className="mx-5 mt-12 rounded-2xl border-2 border-primary bg-card p-6">
+        <p className="text-center text-xs font-semibold uppercase tracking-widest text-primary">
+          Exclusivo Black Friday
+        </p>
+        <h2 className="mt-1 text-center font-display text-4xl leading-none">
+          A <span className="text-gold">única clínica</span> que oferece tudo isso
+        </h2>
+        <p className="mt-3 text-center text-sm text-muted-foreground">
+          Para você não se preocupar com qualidade nem durabilidade: os melhores materiais, a melhor
+          técnica e a transformação do seu sorriso <strong className="text-foreground">sem desgaste</strong>.
+        </p>
+        <ul className="mt-5 space-y-3 text-sm">
+          {[
+            ["🛡️", "10 anos de garantia em contrato", "Segurança total: se algo acontecer, você está coberto por uma década."],
+            ["🎁", "1ª manutenção de brinde", "Sua primeira manutenção sai por nossa conta."],
+            ["✨", "Limpeza de cortesia", "Limpeza prévia antes da instalação das lentes, sem custo."],
+            ["💳", "Parcelamento em até 12x sem juros", "Você paga no seu ritmo, sem pagar nada a mais por isso."],
+          ].map(([icon, title, desc]) => (
+            <li key={title} className="flex gap-3 rounded-xl bg-background p-4">
+              <span className="text-xl">{icon}</span>
+              <span>
+                <strong className="block">
+                  Única clínica que oferece <span className="text-gold">{title}</span>
+                </strong>
+                <span className="text-xs text-muted-foreground">{desc}</span>
+              </span>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-4 text-center text-xs font-semibold text-accent">
+          Nenhuma outra clínica reúne todos esses benefícios em um só tratamento.
+        </p>
+      </section>
+
       {/* Por que */}
       <section className="mx-5 mt-12 rounded-2xl border border-primary/30 bg-card p-6">
         <h2 className="font-display text-3xl">Por que esse desconto só existe agora?</h2>
@@ -235,11 +270,11 @@ function Index() {
         </div>
         <ul className="mt-6 space-y-2 rounded-2xl bg-card p-5 text-sm">
           {[
-            "10 anos de garantia em contrato",
-            "Pronto em 3 horas",
-            "Limpeza prévia antes da instalação das lentes",
-            "1ª manutenção de brinde",
-            "Até 12x sem juros",
+            "Única clínica com 10 anos de garantia em contrato",
+            "Pronto em 3 horas, sem desgaste nos dentes",
+            "Única clínica com limpeza de cortesia antes da instalação das lentes",
+            "Única clínica com 1ª manutenção de brinde",
+            "Única clínica com parcelamento em até 12x sem juros",
           ].map((i) => (
             <li key={i}>✅ {i}</li>
           ))}
