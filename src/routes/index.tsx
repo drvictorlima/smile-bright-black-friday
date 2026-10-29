@@ -1,6 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { OFFERS, currency, installmentText, savings } from "@/lib/offers";
+import { leadDestination, leadSchema, whatsappUrl } from "@/lib/lead";
+import { Button } from "@/components/ui/button";
 
 // Troque pelo número real (com DDI 55 + DDD), só dígitos.
 const WHATSAPP = "5511999999999";
@@ -40,9 +42,9 @@ function useCountdown() {
 }
 
 const Cta = ({ children = "Garantir meu desconto Black Friday" }: { children?: string }) => (
-  <a href="#vaga" className="btn-cta text-base">
-    {children}
-  </a>
+  <Button asChild className="btn-cta h-auto whitespace-normal text-base">
+    <a href="#vaga">{children}</a>
+  </Button>
 );
 
 const Warn = () => (
@@ -207,14 +209,9 @@ function Index() {
         <p className="text-xs font-semibold uppercase tracking-widest text-primary">
           Veja mais resultados no Instagram do coordenador
         </p>
-        <a
-          href="https://instagram.com/drvictorlima"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-2 block font-display text-3xl"
-        >
+        <p className="mt-2 block font-display text-3xl">
           @drvictorlima ✓
-        </a>
+        </p>
         <img
           src="/img/ig.webp"
           alt="Perfil do Instagram Dr. Victor Lima"
@@ -307,9 +304,11 @@ function Index() {
       {/* Barra fixa */}
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/95 p-3 backdrop-blur">
         <div className="mx-auto max-w-md">
-          <a href="#vaga" className="btn-cta text-sm" style={{ animation: "none" }}>
+          <Button asChild className="btn-cta h-auto whitespace-normal text-sm" style={{ animation: "none" }}>
+            <a href="#vaga">
             Garantir meu desconto Black Friday
-          </a>
+            </a>
+          </Button>
         </div>
       </div>
     </div>
@@ -317,23 +316,15 @@ function Index() {
 }
 
 function Coupon() {
-  const [copied, setCopied] = useState(false);
   return (
     <section className="mx-5 mt-10 rounded-2xl border-2 border-dashed border-primary p-6 text-center">
       <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
         🎉 Cupom Black Friday desbloqueado
       </p>
       <p className="text-gold mt-2 font-display text-5xl leading-none tracking-wider">SORRISO BLACK FRIDAY</p>
-      <button
-        type="button"
-        onClick={() => {
-          navigator.clipboard?.writeText("SORRISOBLACKFRIDAY");
-          setCopied(true);
-        }}
-        className="mt-3 min-h-11 rounded-lg bg-secondary px-5 text-sm font-semibold"
-      >
-        {copied ? "✓ Cupom copiado" : "Copiar cupom"}
-      </button>
+      <Button asChild variant="secondary" className="mt-3 h-auto min-h-11 whitespace-normal px-5 py-2 text-sm font-semibold">
+        <a href="#vaga">Usar meu cupom Black Friday</a>
+      </Button>
       <p className="mt-3 text-xs text-muted-foreground">
         Válido só durante a Black Friday. Depois disso, o cupom expira.
       </p>
@@ -377,11 +368,23 @@ function Offer(p: {
 }
 
 function LeadForm() {
+  const navigate = useNavigate();
+  const [error, setError] = useState("");
   const submit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const f = new FormData(e.currentTarget);
-    const msg = `Olá! Quero garantir meu desconto de Black Friday (20 lentes por ${currency(OFFERS.twenty.price)}, cupom SORRISOBLACKFRIDAY).\n\nNome: ${f.get("nome")}\nWhatsApp: ${f.get("whats")}\nE-mail: ${f.get("email")}\nUnidade: ${f.get("unidade")}`;
-    window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank");
+    const result = leadSchema.safeParse(Object.fromEntries(f));
+    if (!result.success) {
+      setError(result.error.issues[0]?.message ?? "Confira os dados do formulário.");
+      return;
+    }
+    setError("");
+    if (leadDestination(result.data.prazo) === "agradecimento") {
+      void navigate({ to: "/obrigado" });
+      return;
+    }
+    const url = whatsappUrl(result.data, WHATSAPP);
+    if (url) window.location.assign(url);
   };
   const input =
     "min-h-12 w-full rounded-lg border border-input bg-background px-4 text-base outline-none focus:border-primary";
@@ -398,7 +401,7 @@ function LeadForm() {
       </p>
       <Scarcity />
       <form onSubmit={submit} className="mt-5 space-y-3">
-        <input name="nome" required placeholder="Seu nome" autoComplete="name" className={input} />
+        <input name="nome" required minLength={2} maxLength={100} aria-label="Seu nome" placeholder="Seu nome" autoComplete="name" className={input} />
         <input
           name="whats"
           required
@@ -406,6 +409,8 @@ function LeadForm() {
           inputMode="tel"
           placeholder="WhatsApp com DDD"
           autoComplete="tel"
+          maxLength={25}
+          aria-label="WhatsApp com DDD"
           className={input}
         />
         <input
@@ -414,9 +419,11 @@ function LeadForm() {
           type="email"
           placeholder="Seu e-mail"
           autoComplete="email"
+          maxLength={255}
+          aria-label="Seu e-mail"
           className={input}
         />
-        <select name="unidade" required className={input} defaultValue="">
+        <select name="unidade" required aria-label="Unidade de preferência" className={input} defaultValue="">
           <option value="" disabled>
             Unidade de preferência
           </option>
@@ -424,13 +431,25 @@ function LeadForm() {
           <option>Santos - SP</option>
           <option>Savassi - BH</option>
         </select>
-        <button type="submit" className="btn-cta text-sm">
+        <fieldset className="space-y-3 py-2">
+          <legend className="text-sm font-semibold">Quando você quer realizar o procedimento?</legend>
+          <label className="flex min-h-12 cursor-pointer items-center gap-3 rounded-lg border border-input px-4 py-3 text-sm">
+            <input type="radio" name="prazo" value="esta-semana" required className="size-4 shrink-0 accent-primary" />
+            Nesta semana
+          </label>
+          <label className="flex min-h-12 cursor-pointer items-center gap-3 rounded-lg border border-input px-4 py-3 text-sm">
+            <input type="radio" name="prazo" value="data-futura" required className="size-4 shrink-0 accent-primary" />
+            Em uma data futura
+          </label>
+        </fieldset>
+        {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
+        <Button type="submit" className="btn-cta h-auto whitespace-normal text-sm">
           Reservar meu horário com desconto
-        </button>
+        </Button>
       </form>
       <Warn />
       <p className="mt-2 text-center text-xs text-muted-foreground">
-        🔒 Seus dados são tratados com sigilo. Entraremos em contato pelo WhatsApp.
+        🔒 Seus dados são tratados com sigilo.
       </p>
     </section>
   );
