@@ -3,6 +3,10 @@ import { useEffect, useState, type FormEvent } from "react";
 import { OFFERS, currency, installmentText, savings } from "@/lib/offers";
 import { BLACK_FRIDAY_COUPON, leadDestination, leadSchema, whatsappUrl } from "@/lib/lead";
 import { Button } from "@/components/ui/button";
+import patientFace from "@/assets/paciente_rosto.webp.asset.json";
+import patientSmile from "@/assets/paciente_intraoral.webp.asset.json";
+import patientVideo from "@/assets/paciente_sorriso_web.mp4.asset.json";
+import patientVideoCover from "@/assets/paciente_video_capa.webp.asset.json";
 
 // Troque pelo número real (com DDI 55 + DDD), só dígitos.
 const WHATSAPP = "5511912686897";
@@ -174,6 +178,8 @@ function Index() {
         </ol>
       </section>
 
+      <PatientResults />
+
       {/* Depoimentos */}
       <section className="px-5 pt-12">
         <h2 className="text-center font-display text-4xl">Quem fez, recomenda</h2>
@@ -306,6 +312,31 @@ function Index() {
       </footer>
 
     </div>
+  );
+}
+
+function PatientResults() {
+  return (
+    <section aria-labelledby="patient-results-title" className="px-5 pt-10">
+      <h2 id="patient-results-title" className="text-center font-display text-3xl">Transformação do sorriso</h2>
+      <div className="mt-5 space-y-5">
+        <figure>
+          <figcaption className="mb-2 text-sm font-semibold text-primary">Fotografias de rosto</figcaption>
+          <img src={patientFace.url} alt="Fotografias de rosto da paciente, antes e depois do procedimento, com marca d’água Doutor Victor Lima e Equipe" width={1200} height={1067} loading="lazy" decoding="async" className="h-auto w-full rounded-lg" />
+        </figure>
+        <figure>
+          <figcaption className="mb-2 text-sm font-semibold text-primary">Fotografias intraorais</figcaption>
+          <img src={patientSmile.url} alt="Fotografias do sorriso da paciente, antes e depois do procedimento, com marca d’água Doutor Victor Lima e Equipe" width={1000} height={1333} loading="lazy" decoding="async" className="h-auto w-full rounded-lg" />
+        </figure>
+        <figure className="overflow-hidden rounded-lg border border-border bg-card">
+          <figcaption className="px-4 py-3 text-sm font-semibold text-primary">Resultado em vídeo</figcaption>
+          <video aria-label="Vídeo do sorriso da paciente" controls playsInline preload="none" poster={patientVideoCover.url} width={576} height={1024} className="block aspect-[9/16] w-full object-contain">
+            <source src={patientVideo.url} type="video/mp4" />
+            Seu navegador não suporta a reprodução deste vídeo.
+          </video>
+        </figure>
+      </div>
+    </section>
   );
 }
 
