@@ -70,11 +70,7 @@ function Index() {
         <h1 className="mt-4 font-display text-5xl leading-[0.95]">
           Lentes em resina <span className="text-gold">sem desgaste</span> na técnica <span className="text-gold">estratificada realista</span>
         </h1>
-        <p className="mt-4 text-lg">
-          20 lentes de <s className="text-muted-foreground">R$ 8.998</s> por{" "}
-          <strong className="text-gold text-2xl">R$ 5.500</strong>
-        </p>
-        <p className="mt-2 text-sm text-muted-foreground">
+        <p className="mt-4 text-sm text-muted-foreground">
           Camadas de resina que imitam a cor e o brilho natural do dente. Resultado realista, sem desgastar seus dentes. + 1ª manutenção de brinde + limpeza cortesia.
         </p>
         <div className="mt-5 grid grid-cols-3 gap-2 text-xs font-semibold">
@@ -102,49 +98,6 @@ function Index() {
       </header>
 
       <Coupon />
-      <Loss />
-
-      {/* Ofertas */}
-      <section className="px-5 pt-12">
-        <p className="text-center text-xs font-semibold uppercase tracking-widest text-primary">
-          Oferta Black Friday
-        </p>
-        <h2 className="mt-1 text-center font-display text-4xl">Veja quanto você economiza</h2>
-        <Scarcity />
-        <div className="mt-6 space-y-4">
-          <Offer
-            tag="Mais procurado"
-            title="10 Lentes"
-            from="R$ 5.489"
-            price="R$ 2.900"
-            inst="12x de R$ 241,67 sem juros"
-            save="R$ 2.589"
-          />
-          <Offer
-            highlight
-            tag="Resultado completo"
-            title="20 Lentes — sorriso completo"
-            from="R$ 8.998"
-            price="R$ 5.500"
-            inst="12x de R$ 458,33 sem juros"
-            save="R$ 3.498"
-          />
-        </div>
-        <ul className="mt-6 space-y-2 rounded-2xl bg-card p-5 text-sm">
-          {[
-            "10 anos de garantia em contrato",
-            "Pronto em 3 horas",
-            "Limpeza prévia antes da instalação das lentes",
-            "1ª manutenção de brinde",
-            "Até 12x sem juros",
-          ].map((i) => (
-            <li key={i}>✅ {i}</li>
-          ))}
-        </ul>
-        <p className="mt-4 text-center text-xs text-muted-foreground">
-          Quando a agenda lotar, o desconto acaba. Sem prorrogação.
-        </p>
-      </section>
 
       {/* Por que */}
       <section className="mx-5 mt-12 rounded-2xl border border-primary/30 bg-card p-6">
