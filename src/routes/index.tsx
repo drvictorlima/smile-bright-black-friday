@@ -58,9 +58,10 @@ function Index() {
   return (
     <div className="mx-auto min-h-screen max-w-md pb-24 font-sans">
       {/* Faixa de urgência */}
-      <div className="sticky top-0 z-30 flex items-center justify-between gap-2 bg-accent px-4 py-2 text-xs font-semibold text-accent-foreground">
-        <span>🔥 BLACK FRIDAY • ENCERRA EM</span>
-        <span className="font-display text-lg tracking-wider tabular-nums">
+      <div className="sticky top-0 z-30 flex items-center justify-center gap-2 bg-accent px-3 py-2 text-xs font-bold uppercase text-accent-foreground">
+        <span className="text-lg leading-none" aria-hidden>🔥</span>
+        <span>Nossa Black Friday se encerra em</span>
+        <span className="font-display text-xl leading-none tracking-wider tabular-nums">
           {t.h}:{t.m}:{t.s}
         </span>
       </div>
