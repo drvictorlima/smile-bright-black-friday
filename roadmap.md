@@ -4,3 +4,5 @@
 - [x] Incluir seleção de 10 ou 20 lentes e confirmação das condições.
 - [x] Enviar pacote, valor, dados completos e cupom BLACKFRIDAY no WhatsApp.
 - [x] Testar os pacotes e os caminhos do formulário.
+- [ ] Agrupar as fotos por rosto e intraorais com marca d’água discreta.
+- [ ] Adicionar o vídeo em card separado e conferir a exibição.
