@@ -158,11 +158,11 @@ function Index() {
           {[
             ["Preencha o formulário", "Ao final, você é direcionado para o nosso WhatsApp."],
             ["Envie uma foto do seu sorriso", "Direto pelo WhatsApp, sem sair de casa."],
-            ["Avaliação de um profissional", "Um especialista analisa seu caso e aprova você para o procedimento."],
+            ["Avaliação de um profissional", "Um especialista analisa seu caso e caso aprovado você agenda o procedimento."],
             ["Agende data e horário", "Você já garante a data e o horário da instalação da sua vaga desta semana."],
-            ["Planejamento digital do caso", "Você realiza o pagamento do planejamento digital, que prepara o seu novo sorriso."],
-            ["Dia do procedimento", "Na data marcada, suas lentes ficam prontas em 3h, sem desgaste."],
-            ["Garantia e brinde", "Ao final, você recebe o contrato de 10 anos de garantia e a 1ª manutenção de brinde."],
+            ["Planejamento digital do caso", "Você realiza o pagamento do planejamento digital, aqui na clínica planejamos o novo sorriso de cada paciente para que o resultado saia melhor do que o esperado."],
+            ["Dia do procedimento", "Na data agendada, você ganha limpeza dental antes da instalação das lentes e suas lentes ficam prontas em até 3h,\nsem desgaste. "],
+            ["Garantia e brinde", "Ao final, você recebe o contrato de 10 anos de garantia e um vale para agendar sua 1ª manutenção de brinde."],
           ].map(([title, desc], i) => (
             <li key={title} className="relative flex gap-4">
               <span className="bg-gold relative z-10 flex size-8 shrink-0 items-center justify-center rounded-full font-display text-xl text-primary-foreground">
