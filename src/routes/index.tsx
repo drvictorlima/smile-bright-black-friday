@@ -75,7 +75,7 @@ function Index() {
           <strong className="text-gold text-2xl">R$ 5.500</strong>
         </p>
         <p className="mt-2 text-sm text-muted-foreground">
-          Camadas de resina que imitam a cor e o brilho natural do dente. Resultado realista, sem desgastar seus dentes. + 1ª manutenção de brinde + limpeza prévia
+          Camadas de resina que imitam a cor e o brilho natural do dente. Resultado realista, sem desgastar seus dentes. + 1ª manutenção de brinde + limpeza cortesia.
         </p>
         <div className="mt-5 grid grid-cols-3 gap-2 text-xs font-semibold">
           {["⏱️ Pronto em 3h", "🛡️ 10 anos de garantia", "💳 12x sem juros"].map((b) => (
