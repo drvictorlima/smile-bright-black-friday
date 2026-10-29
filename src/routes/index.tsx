@@ -362,6 +362,7 @@ function LeadForm() {
       <p className="mt-3 text-sm text-muted-foreground">
         Restam só 4 horários na agenda da Black Friday, preenchidos por ordem de chegada. Quem sair agora perde o desconto.
       </p>
+      <Scarcity />
       <form onSubmit={submit} className="mt-5 space-y-3">
         <input name="nome" required placeholder="Seu nome" autoComplete="name" className={input} />
         <input
