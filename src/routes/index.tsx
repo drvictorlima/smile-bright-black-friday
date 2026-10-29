@@ -254,7 +254,7 @@ function Index() {
         <div className="mt-6 space-y-4">
           <Offer
             tag="Mais procurado"
-            title="10 Lentes"
+            title="Até 10 Lentes"
             from={currency(OFFERS.ten.original)}
             price={currency(OFFERS.ten.price)}
             inst={installmentText(OFFERS.ten)}
@@ -263,7 +263,7 @@ function Index() {
           <Offer
             highlight
             tag="Resultado completo"
-            title="20 Lentes — sorriso completo"
+            title="Até 20 Lentes — sorriso completo"
             from={currency(OFFERS.twenty.original)}
             price={currency(OFFERS.twenty.price)}
             inst={installmentText(OFFERS.twenty)}
@@ -428,16 +428,16 @@ function LeadForm() {
           <option>Savassi - BH</option>
         </select>
         <label className="block space-y-2 text-sm font-semibold">
-          <span>Quantas lentes você quer realizar?</span>
-          <select name="lentes" required aria-label="Quantidade de lentes" className={input} value={lentes} onChange={(e) => setLentes(e.target.value)}>
-            <option value="" disabled>Selecione 10 ou 20 lentes</option>
-            <option value="10">10 lentes — {currency(OFFERS.ten.price)}</option>
-            <option value="20">20 lentes — {currency(OFFERS.twenty.price)}</option>
+          <span>Qual pacote você quer garantir?</span>
+          <select name="lentes" required aria-label="Pacote de lentes" className={input} value={lentes} onChange={(e) => setLentes(e.target.value)}>
+            <option value="" disabled>Selecione até 10 ou até 20 lentes</option>
+            <option value="10">Até 10 lentes — {currency(OFFERS.ten.price)}</option>
+            <option value="20">Até 20 lentes — {currency(OFFERS.twenty.price)}</option>
           </select>
         </label>
         {selectedOffer && (
           <p className="text-sm text-primary">
-            {lentes} lentes por {currency(selectedOffer.price)} — até {installmentText(selectedOffer)} no cartão de crédito. Cupom {BLACK_FRIDAY_COUPON}.
+            Até {lentes} lentes por {currency(selectedOffer.price)} — até {installmentText(selectedOffer)} no cartão de crédito. Cupom {BLACK_FRIDAY_COUPON}.
           </p>
         )}
         <fieldset className="space-y-3 py-2">
@@ -454,7 +454,7 @@ function LeadForm() {
         <label className="flex cursor-pointer items-start gap-3 py-2 text-sm text-muted-foreground">
           <input type="checkbox" name="ciente" value="sim" required className="mt-1 size-4 shrink-0 accent-primary" />
           <span>
-            Estou ciente {selectedOffer ? `do valor de ${currency(selectedOffer.price)} para ${lentes} lentes e ` : "do valor do pacote escolhido e "}
+            Estou ciente {selectedOffer ? `do valor de ${currency(selectedOffer.price)} para até ${lentes} lentes e ` : "do valor do pacote escolhido e "}
             de que o desconto com o cupom {BLACK_FRIDAY_COUPON} é válido somente para as últimas 4 vagas desta semana. Datas futuras pagam o valor cheio, sem desconto.
           </span>
         </label>
