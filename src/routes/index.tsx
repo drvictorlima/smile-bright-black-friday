@@ -158,7 +158,7 @@ function Index() {
           {[
             ["Preencha o formulário", "Ao final, você é direcionado para o nosso WhatsApp."],
             ["Envie uma foto do seu sorriso", "Direto pelo WhatsApp, sem sair de casa."],
-            ["Avaliação de um profissional", "Um especialista analisa seu caso e caso aprovado você agenda o procedimento."],
+            ["Avaliação de um profissional", "Um especialista analisa seu caso e caso aprovado você agenda o procedimento.\nAtravés da fotografia o profissional irá conseguir avaliar todos os pontos importantes para realização do procedimento: encaixe da mordida, posição dos dentes, cor dos dentes, saúde gengival etc.\n"],
             ["Agende data e horário", "Você já garante a data e o horário da instalação da sua vaga desta semana."],
             ["Planejamento digital do caso", "Você realiza o pagamento do planejamento digital, aqui na clínica planejamos o novo sorriso de cada paciente para que o resultado saia melhor do que o esperado."],
             ["Dia do procedimento", "Na data agendada, você ganha limpeza dental antes da instalação das lentes e suas lentes ficam prontas em até 3h,\nsem desgaste. "],
