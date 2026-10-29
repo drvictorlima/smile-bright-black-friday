@@ -154,18 +154,24 @@ function Index() {
       {/* Como funciona */}
       <section className="px-5 pt-12">
         <h2 className="text-center font-display text-4xl">Como funciona</h2>
-        <ol className="mt-6 space-y-3">
+        <ol className="relative mt-8 space-y-6 before:absolute before:left-4 before:top-2 before:bottom-2 before:w-0.5 before:bg-primary/40">
           {[
-            "Você envia foto do sorriso pelo WhatsApp",
-            "Sendo aprovado, agendamos a data de instalação",
-            "Você realiza as lentes em 3h, sem desgastar os dentes em 99% dos casos",
-            "Você recebe contrato com 10 anos de garantia, 1ª manutenção de brinde e limpeza prévia",
-          ].map((s, i) => (
-            <li key={s} className="flex gap-4 rounded-xl bg-card p-4 text-sm">
-              <span className="bg-gold flex size-8 shrink-0 items-center justify-center rounded-full font-display text-xl text-primary-foreground">
+            ["Preencha o formulário", "Ao final, você é direcionado para o nosso WhatsApp."],
+            ["Envie uma foto do seu sorriso", "Direto pelo WhatsApp, sem sair de casa."],
+            ["Avaliação de um profissional", "Um especialista analisa seu caso e aprova você para o procedimento."],
+            ["Agende data e horário", "Você já garante a data e o horário da instalação da sua vaga desta semana."],
+            ["Planejamento digital do caso", "Você realiza o pagamento do planejamento digital, que prepara o seu novo sorriso."],
+            ["Dia do procedimento", "Na data marcada, suas lentes ficam prontas em 3h, sem desgaste."],
+            ["Garantia e brinde", "Ao final, você recebe o contrato de 10 anos de garantia e a 1ª manutenção de brinde."],
+          ].map(([title, desc], i) => (
+            <li key={title} className="relative flex gap-4">
+              <span className="bg-gold relative z-10 flex size-8 shrink-0 items-center justify-center rounded-full font-display text-xl text-primary-foreground">
                 {i + 1}
               </span>
-              <span className="self-center">{s}</span>
+              <div className="flex-1 rounded-xl bg-card p-4 text-sm">
+                <strong className="block font-display text-lg tracking-wide text-primary">{title}</strong>
+                <span className="text-muted-foreground">{desc}</span>
+              </div>
             </li>
           ))}
         </ol>
