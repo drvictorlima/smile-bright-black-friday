@@ -5,7 +5,7 @@ import { leadDestination, leadSchema, whatsappUrl } from "@/lib/lead";
 import { Button } from "@/components/ui/button";
 
 // Troque pelo número real (com DDI 55 + DDD), só dígitos.
-const WHATSAPP = "5511999999999";
+const WHATSAPP = "5511912686897";
 
 const TITLE = `Black Friday: Lentes em Resina Estratificada a partir de ${currency(OFFERS.ten.price)} | Até 47% OFF`;
 const DESC =
