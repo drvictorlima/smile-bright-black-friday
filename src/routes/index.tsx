@@ -109,6 +109,7 @@ function Index() {
           Oferta Black Friday
         </p>
         <h2 className="mt-1 text-center font-display text-4xl">Veja quanto você economiza</h2>
+        <Scarcity />
         <div className="mt-6 space-y-4">
           <Offer
             tag="Mais procurado"
