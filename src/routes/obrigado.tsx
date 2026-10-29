@@ -25,6 +25,9 @@ function ThankYou() {
         Nós agradecemos imensamente o interesse, porém nós focamos em prestar o melhor atendimento possível para os pacientes que têm mais urgência na realização do procedimento. Assim a gente garante qualidade do início ao fim.
       </p>
       <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+        No momento, não conseguimos atender o seu pedido: as condições de Black Friday valem somente para as últimas 4 vagas desta semana. Para datas futuras, o procedimento será realizado pelo valor total, sem o desconto.
+      </p>
+      <p className="mt-4 text-base leading-relaxed text-muted-foreground">
         Esse cuidado garante a qualidade do atendimento de todos os nossos pacientes.
       </p>
       <p className="mt-6 border-l-2 border-primary pl-4 text-base leading-relaxed">
