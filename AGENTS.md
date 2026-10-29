@@ -11,3 +11,4 @@
 
 - Keep offer prices, original prices, installment counts, and derived amounts in `src/lib/offers.ts`; all price displays and WhatsApp messages use it to prevent inconsistent totals.
 - Keep lead validation, qualification routing, and WhatsApp URL generation in `src/lib/lead.ts`; the client-only handoff validates before navigation and never generates contact URLs for future-date leads. No lead data is persisted or sent to an app server.
+- Keep the campaign coupon in `src/lib/lead.ts` and reuse it in page copy and WhatsApp messages so the displayed and sent codes stay identical.

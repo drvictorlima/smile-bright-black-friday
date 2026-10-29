@@ -1,3 +1,6 @@
 - [x] Direcionar todos os botões da campanha ao formulário obrigatório.
 - [x] Qualificar o prazo e separar WhatsApp de agradecimento.
 - [x] Validar os dados e testar os dois caminhos.
+- [x] Incluir seleção de 10 ou 20 lentes e confirmação das condições.
+- [x] Enviar pacote, valor, dados completos e cupom BLACKFRIDAY no WhatsApp.
+- [x] Testar os pacotes e os caminhos do formulário.
