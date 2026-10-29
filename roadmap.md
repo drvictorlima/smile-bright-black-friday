@@ -6,4 +6,6 @@
 - [x] Testar os pacotes e os caminhos do formulário.
 - [x] Agrupar as fotos por rosto e intraorais com marca d’água discreta.
 - [x] Adicionar o vídeo em card separado e conferir a exibição.
+- [ ] Agrupar as novas fotografias por paciente, com marca d’água apenas no depois.
+- [ ] Reunir todos os antes e depois no topo e conferir troca automática a cada segundo.
 - [ ] Confirmar reprodução do vídeo no navegador: arquivo disponível, mas o navegador de teste não iniciou a reprodução.
