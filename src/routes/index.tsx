@@ -116,7 +116,7 @@ function Index() {
             ["🛡️", "10 anos de garantia em contrato", "Segurança total: se algo acontecer, você está coberto por uma década."],
             ["🎁", "1ª manutenção de brinde", "Sua primeira manutenção sai por nossa conta."],
             ["✨", "Limpeza de cortesia", "Limpeza prévia antes da instalação das lentes, sem custo."],
-            ["💳", "Parcelamento em até 12x sem juros", "Você paga no seu ritmo, sem pagar nada a mais por isso."],
+            ["💳", "Parcelamento em até 12x sem juros no cartão de crédito. ", "Você paga no seu ritmo, sem pagar nada a mais por isso."],
           ].map(([icon, title, desc]) => (
             <li key={title} className="flex gap-3 rounded-xl bg-background p-4">
               <span className="text-xl">{icon}</span>
