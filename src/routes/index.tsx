@@ -149,26 +149,26 @@ function Index() {
       </section>
 
       {/* Como funciona */}
-      <section className="px-5 pt-12">
-        <h2 className="text-center font-display text-4xl">Como funciona</h2>
-        <ol className="relative mt-8 space-y-6 before:absolute before:left-4 before:top-2 before:bottom-2 before:w-0.5 before:bg-primary/40">
+      <section className="px-5 pt-10">
+        <h2 className="text-center font-display text-3xl">Como funciona</h2>
+        <ol className="relative mt-5 space-y-3 before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-px before:bg-primary/40">
           {[
             ["Preencha o formulário", "Ao final, você é direcionado para o nosso WhatsApp."],
             ["Envie uma foto do seu sorriso", "Direto pelo WhatsApp, sem sair de casa."],
-            ["Avaliação de um profissional", "Um especialista analisa seu caso e caso aprovado você agenda o procedimento.\nAtravés da fotografia o profissional irá conseguir avaliar todos os pontos importantes para realização do procedimento: encaixe da mordida, posição dos dentes, cor dos dentes, saúde gengival etc.\n"],
+            ["Avaliação de um profissional", "Um especialista analisa seu caso e, caso aprovado, você agenda o procedimento. Pela fotografia ele avalia todos os pontos importantes: encaixe da mordida, posição dos dentes, cor dos dentes, saúde gengival etc."],
             ["Agende data e horário", "Você já garante a data e o horário da instalação da sua vaga desta semana."],
-            ["Planejamento digital do caso", "Você realiza o pagamento do planejamento digital, aqui na clínica planejamos o novo sorriso de cada paciente para que o resultado saia melhor do que o esperado."],
-            ["Dia do procedimento", "Na data agendada, você ganha limpeza dental antes da instalação das lentes e suas lentes ficam prontas em até 3h,\nsem desgaste. "],
+            ["Planejamento digital do caso", "Você realiza o pagamento do planejamento digital e aqui na clínica planejamos o novo sorriso de cada paciente para que o resultado saia melhor do que o esperado."],
+            ["Dia do procedimento", "Na data agendada, você ganha limpeza dental antes da instalação e suas lentes ficam prontas em até 3h, sem desgaste."],
             ["Garantia e brinde", "Ao final, você recebe o contrato de 10 anos de garantia e um vale para agendar sua 1ª manutenção de brinde."],
           ].map(([title, desc], i) => (
-            <li key={title} className="relative flex gap-4">
-              <span className="bg-gold relative z-10 flex size-8 shrink-0 items-center justify-center rounded-full font-display text-xl text-primary-foreground">
+            <li key={title} className="relative flex gap-3">
+              <span className="bg-gold relative z-10 flex size-6 shrink-0 items-center justify-center rounded-full font-display text-sm text-primary-foreground">
                 {i + 1}
               </span>
-              <div className="flex-1 rounded-xl bg-card p-4 text-sm">
-                <strong className="block font-display text-lg tracking-wide text-primary">{title}</strong>
-                <span className="text-muted-foreground">{desc}</span>
-              </div>
+              <p className="flex-1 text-xs leading-snug text-muted-foreground">
+                <strong className="font-display text-base tracking-wide text-primary">{title}.</strong>{" "}
+                {desc}
+              </p>
             </li>
           ))}
         </ol>
