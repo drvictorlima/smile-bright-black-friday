@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { OFFERS, currency, installmentText, savings } from "@/lib/offers";
-import { leadDestination, leadSchema, whatsappUrl } from "@/lib/lead";
+import { BLACK_FRIDAY_COUPON, leadDestination, leadSchema, whatsappUrl } from "@/lib/lead";
 import { Button } from "@/components/ui/button";
 
 // Troque pelo número real (com DDI 55 + DDD), só dígitos.
@@ -9,7 +9,7 @@ const WHATSAPP = "5511912686897";
 
 const TITLE = `Black Friday: Lentes em Resina Estratificada a partir de ${currency(OFFERS.ten.price)} | Até 47% OFF`;
 const DESC =
-  "Lentes em resina sem desgaste na técnica estratificada realista, prontas em 3h, 10 anos de garantia e 12x sem juros. Cupom SORRISOBLACKFRIDAY. Últimas 4 vagas com desconto, só para quem realizar o procedimento ainda esta semana.";
+  `Lentes em resina sem desgaste na técnica estratificada realista, prontas em 3h, 10 anos de garantia e 12x sem juros. Cupom ${BLACK_FRIDAY_COUPON}. Últimas 4 vagas com desconto, só para quem realizar o procedimento ainda esta semana.`;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -292,7 +292,7 @@ function Index() {
         </h2>
         <p className="mt-3 text-sm text-muted-foreground">
           Quem deixar pra depois vai pagar {currency(OFFERS.twenty.original)} pelo mesmo sorriso. Cupom{" "}
-          <strong className="text-primary">SORRISO BLACK FRIDAY</strong>. Agenda quase lotada.
+          <strong className="text-primary">{BLACK_FRIDAY_COUPON}</strong>. Agenda quase lotada.
         </p>
         <div className="mt-5">
           <Cta>Garantir uma das últimas 4 vagas</Cta>
@@ -315,7 +315,7 @@ function Coupon() {
       <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
         🎉 Cupom Black Friday desbloqueado
       </p>
-      <p className="text-gold mt-2 font-display text-5xl leading-none tracking-wider">SORRISO BLACK FRIDAY</p>
+      <p className="text-gold mt-2 font-display text-5xl leading-none tracking-wider">{BLACK_FRIDAY_COUPON}</p>
       <Button asChild variant="secondary" className="mt-3 h-auto min-h-11 whitespace-normal px-5 py-2 text-sm font-semibold">
         <a href="#vaga">Usar meu cupom Black Friday</a>
       </Button>
@@ -364,6 +364,8 @@ function Offer(p: {
 function LeadForm() {
   const navigate = useNavigate();
   const [error, setError] = useState("");
+  const [lentes, setLentes] = useState("");
+  const selectedOffer = lentes === "10" ? OFFERS.ten : lentes === "20" ? OFFERS.twenty : null;
   const submit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const f = new FormData(e.currentTarget);
@@ -425,6 +427,19 @@ function LeadForm() {
           <option>Santos - SP</option>
           <option>Savassi - BH</option>
         </select>
+        <label className="block space-y-2 text-sm font-semibold">
+          <span>Quantas lentes você quer realizar?</span>
+          <select name="lentes" required aria-label="Quantidade de lentes" className={input} value={lentes} onChange={(e) => setLentes(e.target.value)}>
+            <option value="" disabled>Selecione 10 ou 20 lentes</option>
+            <option value="10">10 lentes — {currency(OFFERS.ten.price)}</option>
+            <option value="20">20 lentes — {currency(OFFERS.twenty.price)}</option>
+          </select>
+        </label>
+        {selectedOffer && (
+          <p className="text-sm text-primary">
+            {lentes} lentes por {currency(selectedOffer.price)} — até {installmentText(selectedOffer)} no cartão de crédito. Cupom {BLACK_FRIDAY_COUPON}.
+          </p>
+        )}
         <fieldset className="space-y-3 py-2">
           <legend className="text-sm font-semibold">Quando você quer realizar o procedimento?</legend>
           <label className="flex min-h-12 cursor-pointer items-center gap-3 rounded-lg border border-input px-4 py-3 text-sm">
@@ -436,6 +451,13 @@ function LeadForm() {
             Em uma data futura — valor cheio, sem desconto
           </label>
         </fieldset>
+        <label className="flex cursor-pointer items-start gap-3 py-2 text-sm text-muted-foreground">
+          <input type="checkbox" name="ciente" value="sim" required className="mt-1 size-4 shrink-0 accent-primary" />
+          <span>
+            Estou ciente {selectedOffer ? `do valor de ${currency(selectedOffer.price)} para ${lentes} lentes e ` : "do valor do pacote escolhido e "}
+            de que o desconto com o cupom {BLACK_FRIDAY_COUPON} é válido somente para as últimas 4 vagas desta semana. Datas futuras pagam o valor cheio, sem desconto.
+          </span>
+        </label>
         {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
         <Button type="submit" className="btn-cta h-auto whitespace-normal text-sm">
           Garantir minha vaga desta semana
