@@ -9,7 +9,7 @@ const WHATSAPP = "5511912686897";
 
 const TITLE = `Black Friday: Lentes em Resina Estratificada a partir de ${currency(OFFERS.ten.price)} | Até 47% OFF`;
 const DESC =
-  "Lentes em resina sem desgaste na técnica estratificada realista, prontas em 3h, 10 anos de garantia e 12x sem juros. Cupom SORRISOBLACKFRIDAY. Restam só 4 horários na agenda da Black Friday.";
+  "Lentes em resina sem desgaste na técnica estratificada realista, prontas em 3h, 10 anos de garantia e 12x sem juros. Cupom SORRISOBLACKFRIDAY. Últimas 4 vagas com desconto, só para quem realizar o procedimento ainda esta semana.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -68,7 +68,7 @@ function Index() {
       {/* Hero */}
       <header className="px-5 pt-8 text-center">
         <p className="inline-block rounded-full border border-primary/40 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-primary">
-          Black Friday — até 47% OFF
+          Últimas 4 vagas desta semana — até 47% OFF
         </p>
         <h1 className="mt-4 font-display text-5xl leading-[0.95]">
           Lentes em resina <span className="text-gold">sem desgaste</span> na técnica <span className="text-gold">estratificada realista</span>
@@ -95,7 +95,7 @@ function Index() {
         <div className="mt-5">
           <Cta />
           <p className="mt-3 text-xs text-muted-foreground">
-            Restam só <strong className="text-accent">4 horários</strong> na agenda da Black Friday
+            Últimas <strong className="text-accent">4 vagas</strong> com desconto — somente para quem fizer ainda esta semana
           </p>
         </div>
       </header>
@@ -147,7 +147,7 @@ function Index() {
           profissionais experientes —{" "}
           <strong className="text-accent">NÃO é realizado por dentistas iniciantes.</strong>
         </p>
-        <p className="mt-3 text-sm font-semibold">Depois da Black Friday, os valores voltam ao preço cheio. Restam só 4 horários.</p>
+        <p className="mt-3 text-sm font-semibold">Só as últimas 4 vagas desta semana têm desconto. Depois, os valores voltam ao preço cheio.</p>
       </section>
 
       {/* Como funciona */}
@@ -291,7 +291,7 @@ function Index() {
           <strong className="text-primary">SORRISO BLACK FRIDAY</strong>. Agenda quase lotada.
         </p>
         <div className="mt-5">
-          <Cta>Reservar meu horário agora</Cta>
+          <Cta>Garantir uma das últimas 4 vagas</Cta>
         </div>
         <Warn />
       </section>
@@ -397,7 +397,7 @@ function LeadForm() {
         Sua última oportunidade: de <s className="text-muted-foreground">{currency(OFFERS.twenty.original)}</s> por <span className="text-gold">{currency(OFFERS.twenty.price)}</span>
       </h2>
       <p className="mt-3 text-sm text-muted-foreground">
-        Restam só 4 horários na agenda da Black Friday, preenchidos por ordem de chegada. Quem sair agora perde o desconto.
+        O desconto vale só para as últimas 4 vagas desta semana, preenchidas por ordem de chegada. Datas futuras pagam o valor cheio.
       </p>
       <Scarcity />
       <form onSubmit={submit} className="mt-5 space-y-3">
@@ -435,16 +435,16 @@ function LeadForm() {
           <legend className="text-sm font-semibold">Quando você quer realizar o procedimento?</legend>
           <label className="flex min-h-12 cursor-pointer items-center gap-3 rounded-lg border border-input px-4 py-3 text-sm">
             <input type="radio" name="prazo" value="esta-semana" required className="size-4 shrink-0 accent-primary" />
-            Nesta semana
+            Nesta semana — quero uma das 4 vagas com desconto
           </label>
           <label className="flex min-h-12 cursor-pointer items-center gap-3 rounded-lg border border-input px-4 py-3 text-sm">
             <input type="radio" name="prazo" value="data-futura" required className="size-4 shrink-0 accent-primary" />
-            Em uma data futura
+            Em uma data futura — valor cheio, sem desconto
           </label>
         </fieldset>
         {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
         <Button type="submit" className="btn-cta h-auto whitespace-normal text-sm">
-          Reservar meu horário com desconto
+          Garantir minha vaga desta semana
         </Button>
       </form>
       <Warn />
@@ -483,7 +483,7 @@ function Scarcity() {
   return (
     <div className="mt-5 rounded-xl border border-accent/40 bg-accent/10 p-4 text-sm">
       <p className="font-semibold">
-        🚨 Restam apenas <span className="text-accent">4 horários</span> na agenda da Black Friday
+        🚨 Últimas <span className="text-accent">4 vagas</span> com desconto nesta semana
       </p>
       <div className="mt-2 h-2 overflow-hidden rounded-full bg-secondary">
         <div className="h-full w-[87%] rounded-full bg-accent" />
@@ -501,11 +501,11 @@ function Loss() {
       </h2>
       <div className="mt-5 grid grid-cols-2 gap-3 text-sm">
         <div className="rounded-xl border-2 border-primary bg-card p-4">
-          <p className="text-xs text-muted-foreground">Agendando agora</p>
+          <p className="text-xs text-muted-foreground">Fazendo esta semana</p>
           <p className="text-gold font-display text-4xl">{currency(OFFERS.twenty.price)}</p>
         </div>
         <div className="rounded-xl border border-border bg-card p-4 opacity-80">
-          <p className="text-xs text-muted-foreground">Depois da Black Friday</p>
+          <p className="text-xs text-muted-foreground">Em data futura</p>
           <p className="font-display text-4xl line-through">{currency(OFFERS.twenty.original)}</p>
         </div>
       </div>
