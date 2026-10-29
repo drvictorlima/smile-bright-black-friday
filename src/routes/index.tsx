@@ -109,7 +109,7 @@ function Index() {
           profissionais experientes —{" "}
           <strong className="text-accent">NÃO é realizado por dentistas iniciantes.</strong>
         </p>
-        <p className="mt-3 text-sm font-semibold">Depois da Black Friday, os valores voltam para R$ 5.489 e R$ 8.998. Restam só 4 horários.</p>
+        <p className="mt-3 text-sm font-semibold">Depois da Black Friday, os valores voltam ao preço cheio. Restam só 4 horários.</p>
       </section>
 
       {/* Como funciona */}
@@ -205,6 +205,50 @@ function Index() {
         ))}
       </section>
 
+      <Loss />
+
+      {/* Ofertas */}
+      <section className="px-5 pt-12">
+        <p className="text-center text-xs font-semibold uppercase tracking-widest text-primary">
+          Oferta Black Friday
+        </p>
+        <h2 className="mt-1 text-center font-display text-4xl">Veja quanto você economiza</h2>
+        <Scarcity />
+        <div className="mt-6 space-y-4">
+          <Offer
+            tag="Mais procurado"
+            title="10 Lentes"
+            from="R$ 5.489"
+            price="R$ 2.900"
+            inst="12x de R$ 241,67 sem juros"
+            save="R$ 2.589"
+          />
+          <Offer
+            highlight
+            tag="Resultado completo"
+            title="20 Lentes — sorriso completo"
+            from="R$ 8.998"
+            price="R$ 5.500"
+            inst="12x de R$ 458,33 sem juros"
+            save="R$ 3.498"
+          />
+        </div>
+        <ul className="mt-6 space-y-2 rounded-2xl bg-card p-5 text-sm">
+          {[
+            "10 anos de garantia em contrato",
+            "Pronto em 3 horas",
+            "Limpeza prévia antes da instalação das lentes",
+            "1ª manutenção de brinde",
+            "Até 12x sem juros",
+          ].map((i) => (
+            <li key={i}>✅ {i}</li>
+          ))}
+        </ul>
+        <p className="mt-4 text-center text-xs text-muted-foreground">
+          Quando a agenda lotar, o desconto acaba. Sem prorrogação.
+        </p>
+      </section>
+
       <section className="px-5 pt-12 text-center">
         <h2 className="font-display text-4xl">
           Daqui a pouco <span className="text-gold">esse preço não existe mais</span>
@@ -228,7 +272,7 @@ function Index() {
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/95 p-3 backdrop-blur">
         <div className="mx-auto max-w-md">
           <a href="#vaga" className="btn-cta text-sm" style={{ animation: "none" }}>
-            Garantir desconto • 20 lentes R$ 5.500
+            Garantir meu desconto Black Friday
           </a>
         </div>
       </div>
