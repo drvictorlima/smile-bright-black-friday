@@ -4,9 +4,9 @@ import { useEffect, useState, type FormEvent } from "react";
 // Troque pelo número real (com DDI 55 + DDD), só dígitos.
 const WHATSAPP = "5511999999999";
 
-const TITLE = "Black Friday: 20 Lentes em Resina por R$ 2.199 | Só esta semana";
+const TITLE = "Black Friday: 20 Lentes em Resina por R$ 2.199 | Até 56% OFF";
 const DESC =
-  "Lentes em resina sem desgaste, prontas em 3h, 10 anos de garantia e 12x sem juros. Cupom SORRISO30. Apenas 4 vagas no Tatuapé (SP) e Savassi (BH).";
+  "Lentes em resina sem desgaste, prontas em 3h, 10 anos de garantia e 12x sem juros. Cupom SORRISOBLACKFRIDAY. Restam só 4 horários na agenda da Black Friday.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -38,7 +38,7 @@ function useCountdown() {
   return { h: p(Math.floor(s / 3600)), m: p(Math.floor((s % 3600) / 60)), s: p(s % 60) };
 }
 
-const Cta = ({ children = "Garantir minha vaga agora" }: { children?: string }) => (
+const Cta = ({ children = "Garantir meu desconto Black Friday" }: { children?: string }) => (
   <a href="#vaga" className="btn-cta text-base">
     {children}
   </a>
@@ -46,7 +46,7 @@ const Cta = ({ children = "Garantir minha vaga agora" }: { children?: string }) 
 
 const Warn = () => (
   <p className="mt-3 text-center text-xs text-muted-foreground">
-    ⚠️ Só confirmamos vagas para quem realiza o procedimento essa semana.
+    ⏳ Quando o cronômetro zerar, o desconto acaba e o preço volta ao valor cheio.
   </p>
 );
 
@@ -56,7 +56,7 @@ function Index() {
     <div className="mx-auto min-h-screen max-w-md pb-24 font-sans">
       {/* Faixa de urgência */}
       <div className="sticky top-0 z-30 flex items-center justify-between gap-2 bg-accent px-4 py-2 text-xs font-semibold text-accent-foreground">
-        <span>🔥 BLACK FRIDAY • SÓ ESTA SEMANA</span>
+        <span>🔥 BLACK FRIDAY • ENCERRA EM</span>
         <span className="font-display text-lg tracking-wider tabular-nums">
           {t.h}:{t.m}:{t.s}
         </span>
@@ -65,7 +65,7 @@ function Index() {
       {/* Hero */}
       <header className="px-5 pt-8 text-center">
         <p className="inline-block rounded-full border border-primary/40 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-primary">
-          Semana do Cliente Modelo
+          Black Friday — até 56% OFF
         </p>
         <h1 className="mt-4 font-display text-5xl leading-[0.95]">
           Lentes em resina <span className="text-gold">sem desgaste</span>
@@ -96,12 +96,13 @@ function Index() {
         <div className="mt-5">
           <Cta />
           <p className="mt-3 text-xs text-muted-foreground">
-            Apenas <strong className="text-accent">4 vagas</strong> • Tatuapé, SP ou Savassi, BH
+            Restam só <strong className="text-accent">4 horários</strong> na agenda da Black Friday
           </p>
         </div>
       </header>
 
       <Coupon />
+      <Loss />
 
       {/* Ofertas */}
       <section className="px-5 pt-12">
@@ -140,21 +141,21 @@ function Index() {
           ))}
         </ul>
         <p className="mt-4 text-center text-xs text-muted-foreground">
-          Após esgotar as vagas, os preços retornam ao valor cheio.
+          Quando a agenda lotar, o desconto acaba. Sem prorrogação.
         </p>
       </section>
 
       {/* Por que */}
       <section className="mx-5 mt-12 rounded-2xl border border-primary/30 bg-card p-6">
-        <h2 className="font-display text-3xl">Por que esse preço?</h2>
+        <h2 className="font-display text-3xl">Por que esse desconto só existe agora?</h2>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-          A vaga de <strong className="text-foreground">cliente modelo</strong> existe para ampliar
-          nosso portfólio de casos. Você recebe os{" "}
+          Esse é um <strong className="text-foreground">preço exclusivo de Black Friday</strong>, com
+          agenda limitada. Você recebe os{" "}
           <strong className="text-foreground">melhores materiais importados</strong>, aplicados por
           profissionais experientes —{" "}
           <strong className="text-accent">NÃO é realizado por dentistas iniciantes.</strong>
         </p>
-        <p className="mt-3 text-sm font-semibold">São apenas 4 vagas, somente essa semana.</p>
+        <p className="mt-3 text-sm font-semibold">Depois da Black Friday, os valores voltam para R$ 3.500 e R$ 5.000. Restam só 4 horários.</p>
       </section>
 
       {/* Como funciona */}
@@ -252,20 +253,20 @@ function Index() {
 
       <section className="px-5 pt-12 text-center">
         <h2 className="font-display text-4xl">
-          Sua Black Friday ficou <span className="text-gold">ainda mais especial</span>
+          Daqui a pouco <span className="text-gold">esse preço não existe mais</span>
         </h2>
         <p className="mt-3 text-sm text-muted-foreground">
-          Não deixe pra depois a transformação que seu sorriso merece. Cupom{" "}
-          <strong className="text-primary">SORRISO30</strong>. Poucas vagas, só essa semana.
+          Quem deixar pra depois vai pagar R$ 5.000 pelo mesmo sorriso. Cupom{" "}
+          <strong className="text-primary">SORRISO BLACK FRIDAY</strong>. Agenda quase lotada.
         </p>
         <div className="mt-5">
-          <Cta />
+          <Cta>Reservar meu horário agora</Cta>
         </div>
         <Warn />
       </section>
 
       <footer className="mt-12 px-5 text-center text-xs text-muted-foreground">
-        *Válido para agendamentos essa semana. Sujeito à disponibilidade nas unidades do Tatuapé, SP
+        *Válido apenas durante a Black Friday. Sujeito à disponibilidade nas unidades do Tatuapé, SP
         ou Savassi, BH.
       </footer>
 
@@ -273,7 +274,7 @@ function Index() {
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/95 p-3 backdrop-blur">
         <div className="mx-auto max-w-md">
           <a href="#vaga" className="btn-cta text-sm" style={{ animation: "none" }}>
-            Garantir vaga • 20 lentes R$ 2.199
+            Garantir desconto • 20 lentes R$ 2.199
           </a>
         </div>
       </div>
@@ -288,11 +289,11 @@ function Coupon() {
       <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
         🎉 Cupom Black Friday desbloqueado
       </p>
-      <p className="text-gold mt-2 font-display text-6xl tracking-wider">SORRISO30</p>
+      <p className="text-gold mt-2 font-display text-5xl leading-none tracking-wider">SORRISO BLACK FRIDAY</p>
       <button
         type="button"
         onClick={() => {
-          navigator.clipboard?.writeText("SORRISO30");
+          navigator.clipboard?.writeText("SORRISOBLACKFRIDAY");
           setCopied(true);
         }}
         className="mt-3 min-h-11 rounded-lg bg-secondary px-5 text-sm font-semibold"
@@ -300,7 +301,7 @@ function Coupon() {
         {copied ? "✓ Cupom copiado" : "Copiar cupom"}
       </button>
       <p className="mt-3 text-xs text-muted-foreground">
-        Válido para agendamentos essa semana no Tatuapé, SP ou Savassi, BH.
+        Válido só durante a Black Friday. Depois disso, o cupom expira.
       </p>
     </section>
   );
@@ -345,7 +346,7 @@ function LeadForm() {
   const submit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const f = new FormData(e.currentTarget);
-    const msg = `Olá! Quero garantir minha vaga de cliente modelo (Black Friday - 20 lentes por R$ 2.199, cupom SORRISO30).\n\nNome: ${f.get("nome")}\nWhatsApp: ${f.get("whats")}\nE-mail: ${f.get("email")}\nUnidade: ${f.get("unidade")}`;
+    const msg = `Olá! Quero garantir meu desconto de Black Friday (20 lentes por R$ 2.199, cupom SORRISOBLACKFRIDAY).\n\nNome: ${f.get("nome")}\nWhatsApp: ${f.get("whats")}\nE-mail: ${f.get("email")}\nUnidade: ${f.get("unidade")}`;
     window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank");
   };
   const input =
@@ -353,13 +354,13 @@ function LeadForm() {
   return (
     <section id="vaga" className="mx-5 mt-12 scroll-mt-14 rounded-2xl border-2 border-primary bg-card p-6">
       <p className="text-xs font-semibold uppercase tracking-widest text-accent">
-        Atenção — não saia desta página
+        Atenção — o desconto acaba quando o cronômetro zerar
       </p>
       <h2 className="mt-2 font-display text-4xl leading-none">
         Sua última oportunidade: de R$ 5.000 por <span className="text-gold">R$ 2.199</span>
       </h2>
       <p className="mt-3 text-sm text-muted-foreground">
-        Apenas 4 vagas. O agendamento é feito por ordem de preenchimento.
+        Restam só 4 horários na agenda da Black Friday, preenchidos por ordem de chegada. Quem sair agora perde o desconto.
       </p>
       <form onSubmit={submit} className="mt-5 space-y-3">
         <input name="nome" required placeholder="Seu nome" autoComplete="name" className={input} />
@@ -389,7 +390,7 @@ function LeadForm() {
           <option>Savassi - BH</option>
         </select>
         <button type="submit" className="btn-cta text-sm">
-          Garantir minha vaga: 20 lentes por R$ 2.199
+          Reservar meu horário com desconto
         </button>
       </form>
       <Warn />
@@ -423,3 +424,38 @@ const REVIEWS = [
     text: "O parcelamento em 12x sem juros foi decisivo pra eu finalmente realizar esse sonho. Melhor investimento que já fiz na minha autoestima. Hoje sorrio em todas as fotos sem pensar duas vezes!",
   },
 ];
+
+function Scarcity() {
+  return (
+    <div className="mt-5 rounded-xl border border-accent/40 bg-accent/10 p-4 text-sm">
+      <p className="font-semibold">
+        🚨 Restam apenas <span className="text-accent">4 horários</span> na agenda da Black Friday
+      </p>
+      <div className="mt-2 h-2 overflow-hidden rounded-full bg-secondary">
+        <div className="h-full w-[87%] rounded-full bg-accent" />
+      </div>
+      <p className="mt-1 text-xs text-muted-foreground">87% da agenda já preenchida</p>
+    </div>
+  );
+}
+
+function Loss() {
+  return (
+    <section className="mx-5 mt-10 text-center">
+      <h2 className="font-display text-4xl leading-none">
+        Não deixe <span className="text-accent">R$ 2.801</span> na mesa
+      </h2>
+      <div className="mt-5 grid grid-cols-2 gap-3 text-sm">
+        <div className="rounded-xl border-2 border-primary bg-card p-4">
+          <p className="text-xs text-muted-foreground">Agendando agora</p>
+          <p className="text-gold font-display text-4xl">R$ 2.199</p>
+        </div>
+        <div className="rounded-xl border border-border bg-card p-4 opacity-80">
+          <p className="text-xs text-muted-foreground">Depois da Black Friday</p>
+          <p className="font-display text-4xl line-through">R$ 5.000</p>
+        </div>
+      </div>
+      <p className="mt-3 text-sm font-semibold text-accent">Se deixar passar, você perde R$ 2.801.</p>
+    </section>
+  );
+}
