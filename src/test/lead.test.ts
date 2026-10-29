@@ -6,19 +6,19 @@ const lead = { nome: "Paciente Teste", whats: "11987654321", email: "paciente@ex
 describe("Required scheduling qualification", () => {
   it("sends a completed form for this week to WhatsApp", () => {
     expect(leadDestination("esta-semana")).toBe("whatsapp");
-    const url = whatsappUrl(lead, "5511999999999");
-    expect(url).toContain("https://wa.me/5511999999999?text=");
+    const url = whatsappUrl(lead, "5511912686897");
+    expect(url).toContain("https://wa.me/5511912686897?text=");
     expect(decodeURIComponent(url ?? "")).toContain("Quero realizar o procedimento nesta semana.");
   });
   it("sends future dates to thanks and never generates a WhatsApp URL", () => {
     expect(leadDestination("data-futura")).toBe("agradecimento");
-    expect(whatsappUrl({ ...lead, prazo: "data-futura" }, "5511999999999")).toBeNull();
+    expect(whatsappUrl({ ...lead, prazo: "data-futura" }, "5511912686897")).toBeNull();
   });
   it("blocks WhatsApp until all form fields and qualification are valid", () => {
     for (const field of Object.keys(lead)) {
       const incomplete = { ...lead, [field]: "" };
       expect(leadSchema.safeParse(incomplete).success).toBe(false);
-      expect(() => whatsappUrl(incomplete, "5511999999999")).toThrow();
+      expect(() => whatsappUrl(incomplete, "5511912686897")).toThrow();
     }
   });
   it("rejects invalid or excessive input before building an external URL", () => {
