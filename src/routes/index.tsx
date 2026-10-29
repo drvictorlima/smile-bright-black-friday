@@ -70,11 +70,7 @@ function Index() {
         <h1 className="mt-4 font-display text-5xl leading-[0.95]">
           Lentes em resina <span className="text-gold">sem desgaste</span> na técnica <span className="text-gold">estratificada realista</span>
         </h1>
-        <p className="mt-4 text-lg">
-          20 lentes de <s className="text-muted-foreground">R$ 8.998</s> por{" "}
-          <strong className="text-gold text-2xl">R$ 5.500</strong>
-        </p>
-        <p className="mt-2 text-sm text-muted-foreground">
+        <p className="mt-4 text-sm text-muted-foreground">
           Camadas de resina que imitam a cor e o brilho natural do dente. Resultado realista, sem desgastar seus dentes. + 1ª manutenção de brinde + limpeza cortesia.
         </p>
         <div className="mt-5 grid grid-cols-3 gap-2 text-xs font-semibold">
@@ -102,49 +98,6 @@ function Index() {
       </header>
 
       <Coupon />
-      <Loss />
-
-      {/* Ofertas */}
-      <section className="px-5 pt-12">
-        <p className="text-center text-xs font-semibold uppercase tracking-widest text-primary">
-          Oferta Black Friday
-        </p>
-        <h2 className="mt-1 text-center font-display text-4xl">Veja quanto você economiza</h2>
-        <Scarcity />
-        <div className="mt-6 space-y-4">
-          <Offer
-            tag="Mais procurado"
-            title="10 Lentes"
-            from="R$ 5.489"
-            price="R$ 2.900"
-            inst="12x de R$ 241,67 sem juros"
-            save="R$ 2.589"
-          />
-          <Offer
-            highlight
-            tag="Resultado completo"
-            title="20 Lentes — sorriso completo"
-            from="R$ 8.998"
-            price="R$ 5.500"
-            inst="12x de R$ 458,33 sem juros"
-            save="R$ 3.498"
-          />
-        </div>
-        <ul className="mt-6 space-y-2 rounded-2xl bg-card p-5 text-sm">
-          {[
-            "10 anos de garantia em contrato",
-            "Pronto em 3 horas",
-            "Limpeza prévia antes da instalação das lentes",
-            "1ª manutenção de brinde",
-            "Até 12x sem juros",
-          ].map((i) => (
-            <li key={i}>✅ {i}</li>
-          ))}
-        </ul>
-        <p className="mt-4 text-center text-xs text-muted-foreground">
-          Quando a agenda lotar, o desconto acaba. Sem prorrogação.
-        </p>
-      </section>
 
       {/* Por que */}
       <section className="mx-5 mt-12 rounded-2xl border border-primary/30 bg-card p-6">
@@ -156,7 +109,7 @@ function Index() {
           profissionais experientes —{" "}
           <strong className="text-accent">NÃO é realizado por dentistas iniciantes.</strong>
         </p>
-        <p className="mt-3 text-sm font-semibold">Depois da Black Friday, os valores voltam para R$ 5.489 e R$ 8.998. Restam só 4 horários.</p>
+        <p className="mt-3 text-sm font-semibold">Depois da Black Friday, os valores voltam ao preço cheio. Restam só 4 horários.</p>
       </section>
 
       {/* Como funciona */}
@@ -252,6 +205,50 @@ function Index() {
         ))}
       </section>
 
+      <Loss />
+
+      {/* Ofertas */}
+      <section className="px-5 pt-12">
+        <p className="text-center text-xs font-semibold uppercase tracking-widest text-primary">
+          Oferta Black Friday
+        </p>
+        <h2 className="mt-1 text-center font-display text-4xl">Veja quanto você economiza</h2>
+        <Scarcity />
+        <div className="mt-6 space-y-4">
+          <Offer
+            tag="Mais procurado"
+            title="10 Lentes"
+            from="R$ 5.489"
+            price="R$ 2.900"
+            inst="12x de R$ 241,67 sem juros"
+            save="R$ 2.589"
+          />
+          <Offer
+            highlight
+            tag="Resultado completo"
+            title="20 Lentes — sorriso completo"
+            from="R$ 8.998"
+            price="R$ 5.500"
+            inst="12x de R$ 458,33 sem juros"
+            save="R$ 3.498"
+          />
+        </div>
+        <ul className="mt-6 space-y-2 rounded-2xl bg-card p-5 text-sm">
+          {[
+            "10 anos de garantia em contrato",
+            "Pronto em 3 horas",
+            "Limpeza prévia antes da instalação das lentes",
+            "1ª manutenção de brinde",
+            "Até 12x sem juros",
+          ].map((i) => (
+            <li key={i}>✅ {i}</li>
+          ))}
+        </ul>
+        <p className="mt-4 text-center text-xs text-muted-foreground">
+          Quando a agenda lotar, o desconto acaba. Sem prorrogação.
+        </p>
+      </section>
+
       <section className="px-5 pt-12 text-center">
         <h2 className="font-display text-4xl">
           Daqui a pouco <span className="text-gold">esse preço não existe mais</span>
@@ -275,7 +272,7 @@ function Index() {
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/95 p-3 backdrop-blur">
         <div className="mx-auto max-w-md">
           <a href="#vaga" className="btn-cta text-sm" style={{ animation: "none" }}>
-            Garantir desconto • 20 lentes R$ 5.500
+            Garantir meu desconto Black Friday
           </a>
         </div>
       </div>
