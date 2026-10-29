@@ -5,7 +5,7 @@ import { BLACK_FRIDAY_COUPON, leadDestination, leadSchema, whatsappUrl } from "@
 import { Button } from "@/components/ui/button";
 import patientFace from "@/assets/paciente_rosto.webp.asset.json";
 import patientSmile from "@/assets/paciente_intraoral.webp.asset.json";
-import patientVideo from "@/assets/paciente_sorriso.mp4.asset.json";
+import patientVideo from "@/assets/paciente_sorriso_web.mp4.asset.json";
 import patientVideoCover from "@/assets/paciente_video_capa.webp.asset.json";
 
 // Troque pelo número real (com DDI 55 + DDD), só dígitos.
