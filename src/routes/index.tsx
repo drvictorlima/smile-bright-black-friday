@@ -93,12 +93,9 @@ function Index() {
           className="mt-6 aspect-square w-full rounded-2xl border border-border object-cover"
         />
         <p className="mt-3 text-sm">⭐⭐⭐⭐⭐ +55.000 sorrisos transformados • 99% de satisfação</p>
-        <div className="mt-5">
-          <Cta />
-          <p className="mt-3 text-xs text-muted-foreground">
-            Últimas <strong className="text-accent">4 vagas</strong> com desconto — somente para quem fizer ainda esta semana
-          </p>
-        </div>
+        <p className="mt-3 text-xs text-muted-foreground">
+          Últimas <strong className="text-accent">4 vagas</strong> com desconto — somente para quem fizer ainda esta semana
+        </p>
       </header>
 
       <Coupon />
@@ -308,16 +305,6 @@ function Index() {
         ou Savassi, BH.
       </footer>
 
-      {/* Barra fixa */}
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/95 p-3 backdrop-blur">
-        <div className="mx-auto max-w-md">
-          <Button asChild className="btn-cta h-auto whitespace-normal text-sm" style={{ animation: "none" }}>
-            <a href="#vaga">
-            Garantir meu desconto Black Friday
-            </a>
-          </Button>
-        </div>
-      </div>
     </div>
   );
 }
