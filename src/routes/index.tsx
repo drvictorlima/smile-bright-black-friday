@@ -5,6 +5,7 @@ import { OFFERS, currency, installmentText, savings } from "@/lib/offers";
 import { BLACK_FRIDAY_COUPON, leadDestination, leadSchema, whatsappUrl } from "@/lib/lead";
 import { Button } from "@/components/ui/button";
 import { ResultsCarousel } from "@/components/results-carousel";
+import { CampaignFaq } from "@/components/campaign-faq";
 import initialResult from "@/assets/resultado_inicial.webp.asset.json";
 
 // Troque pelo número real (com DDI 55 + DDD), só dígitos.
@@ -229,6 +230,8 @@ function Index() {
           className="mx-auto mt-4 w-3/4 rounded-2xl border border-border"
         />
       </section>
+
+      <CampaignFaq />
 
       <LeadForm />
 
