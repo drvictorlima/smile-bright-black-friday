@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { leadDestination, leadSchema, whatsappUrl } from "@/lib/lead";
 
-const lead = { nome: "Paciente Teste", whats: "11987654321", email: "paciente@example.com", unidade: "Tatuapé - SP", lentes: "20", prazo: "esta-semana", ciente: "sim" };
+const lead = { nome: "Paciente Teste", whats: "11987654321", email: "paciente@example.com", unidade: "Tatuapé - SP", lentes: "20", prazo: "esta-semana" };
 
 describe("Required scheduling qualification", () => {
   it("sends a completed form for this week to WhatsApp", () => {
@@ -22,7 +22,7 @@ describe("Required scheduling qualification", () => {
     }
   });
   it("rejects invalid or excessive input before building an external URL", () => {
-    for (const invalid of [{ nome: "<script>" }, { nome: "a".repeat(101) }, { whats: "abc" }, { email: "invalid" }, { unidade: "Unknown" }, { prazo: "unknown" }, { lentes: "15" }, { ciente: "nao" }]) {
+    for (const invalid of [{ nome: "<script>" }, { nome: "a".repeat(101) }, { whats: "abc" }, { email: "invalid" }, { unidade: "Unknown" }, { prazo: "unknown" }, { lentes: "15" }]) {
       expect(leadSchema.safeParse({ ...lead, ...invalid }).success).toBe(false);
     }
   });
@@ -31,7 +31,6 @@ describe("Required scheduling qualification", () => {
     expect(message).toContain(`Pacote: até ${lentes} lentes`);
     expect(message).toContain(`Valor: ${price}`);
     expect(message).toContain(installments);
-    expect(message).toContain(`Estou ciente do valor de ${price} para até ${lentes} lentes`);
   });
   it("includes all contact details, this week and the BLACKFRIDAY coupon", () => {
     const message = decodeURIComponent(whatsappUrl(lead, "5511912686897") ?? "");
