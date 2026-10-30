@@ -2,7 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { useCountdown } from "@/lib/countdown";
 import { OFFERS, currency, installmentText, savings } from "@/lib/offers";
-import { BLACK_FRIDAY_COUPON, leadDestination, leadSchema, whatsappUrl } from "@/lib/lead";
+import { BLACK_FRIDAY_COUPON, isBotSubmission, leadDestination, leadSchema, whatsappUrl } from "@/lib/lead";
 import { Button } from "@/components/ui/button";
 import { ResultsCarousel } from "@/components/results-carousel";
 import { CampaignFaq } from "@/components/campaign-faq";
@@ -377,6 +377,7 @@ function LeadForm() {
   const submit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const f = new FormData(e.currentTarget);
+    if (isBotSubmission(f.get("website"))) return;
     const result = leadSchema.safeParse(Object.fromEntries(f));
     if (!result.success) {
       setError(result.error.issues[0]?.message ?? "Confira os dados do formulário.");
@@ -405,6 +406,8 @@ function LeadForm() {
       </p>
       <Scarcity />
       <form onSubmit={submit} className="mt-5 space-y-3">
+        <input name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute -left-[9999px] h-px w-px opacity-0" />
+
         <input name="nome" required minLength={2} maxLength={100} aria-label="Seu nome" placeholder="Seu nome" autoComplete="name" className={input} />
         <input
           name="whats"

@@ -57,3 +57,12 @@ describe("Required scheduling qualification", () => {
     expect(whatsappUrl({ ...lead, lentes, prazo: "data-futura" }, "5511912686897")).toBeNull();
   });
 });
+import { isBotSubmission } from "@/lib/lead";
+import { describe as d2, it as i2, expect as e2 } from "vitest";
+d2("honeypot", () => {
+  i2("ignores submissions with the hidden field filled", () => {
+    e2(isBotSubmission("http://spam")).toBe(true);
+    e2(isBotSubmission("")).toBe(false);
+    e2(isBotSubmission(null)).toBe(false);
+  });
+});
