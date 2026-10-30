@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { useCountdown } from "@/lib/countdown";
 import { OFFERS, currency, installmentText, savings } from "@/lib/offers";
@@ -24,6 +24,10 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://megadescontoblackfriday.com/" },
+      { property: "og:locale", content: "pt_BR" },
+      { property: "og:image", content: `https://megadescontoblackfriday.com${initialResult.url}` },
+      { name: "twitter:image", content: `https://megadescontoblackfriday.com${initialResult.url}` },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "preload", href: initialResult.url, as: "image" }],
@@ -307,9 +311,18 @@ function Index() {
         <Warn />
       </section>
 
-      <footer className="mt-12 px-5 text-center text-xs text-muted-foreground">
-        *Válido apenas durante a Black Friday. Sujeito à disponibilidade nas unidades do Tatuapé, SP
-        ou Savassi, BH.
+      <footer className="mt-12 space-y-2 px-5 text-center text-xs text-muted-foreground">
+        <p>
+          *Válido apenas durante a Black Friday. Sujeito à disponibilidade nas unidades do Tatuapé, SP
+          ou Savassi, BH.
+        </p>
+        <p>
+          Os resultados variam de pessoa para pessoa e dependem de avaliação clínica prévia. As fotos
+          são de pacientes reais, divulgadas com autorização.
+        </p>
+        <p>
+          <Link to="/privacidade" className="underline">Política de Privacidade</Link>
+        </p>
       </footer>
 
     </div>
