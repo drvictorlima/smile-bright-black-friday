@@ -12,4 +12,5 @@
 - Keep offer prices, original prices, installment counts, and derived amounts in `src/lib/offers.ts`; all price displays and WhatsApp messages use it to prevent inconsistent totals.
 - Keep lead validation, qualification routing, and WhatsApp URL generation in `src/lib/lead.ts`; the client-only handoff validates before navigation and never generates contact URLs for future-date leads. No lead data is persisted or sent to an app server.
 - Keep the campaign coupon in `src/lib/lead.ts` and reuse it in page copy and WhatsApp messages so the displayed and sent codes stay identical.
+- Keep the visit countdown in `src/lib/countdown.ts`, using a client-side deadline and stopping at zero; isolate timing so expiration is testable without changing lead qualification.
 - Serve patient photo collages and the separate patient video through CDN asset pointers; keep all photo comparisons in the hero ResultsCarousel, prioritize its first image and load later slides after hydration, and use video preload="none" to preserve initial page speed. Carousel controls and reduced-motion handling let visitors inspect results without duplication farther down the page.
