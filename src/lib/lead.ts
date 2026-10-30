@@ -28,7 +28,7 @@ export function whatsappUrl(input: unknown, phone: string) {
   const message = `Olá! Quero garantir uma das últimas 4 vagas de Black Friday desta semana.\n\nNome: ${lead.nome}\nWhatsApp: ${lead.whats}\nE-mail: ${lead.email}\nUnidade: ${lead.unidade}\nPacote: até ${lead.lentes} lentes\nValor: ${currency(offer.price)}\nParcelamento: até ${installmentText(offer)} no cartão de crédito\nCupom: ${BLACK_FRIDAY_COUPON}\nQuero realizar o procedimento nesta semana.`;
   return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 }
-export const LEAD_WEBHOOK_URL = "https://acessodrvictorlima.app.n8n.cloud/";
+export const LEAD_WEBHOOK_URL = "https://acessodrvictorlima.app.n8n.cloud/webhook/meta-capi";
 
 /** Payload posted to the clinic's n8n webhook for this-week leads. */
 export function webhookPayload(lead: z.infer<typeof leadSchema>, eventId: string, eventTime: number) {

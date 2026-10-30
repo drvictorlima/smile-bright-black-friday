@@ -3,6 +3,7 @@ import { useState, type FormEvent } from "react";
 import { useCountdown } from "@/lib/countdown";
 import { OFFERS, currency, installmentText, savings } from "@/lib/offers";
 import { BLACK_FRIDAY_COUPON, LEAD_WEBHOOK_URL, isBotSubmission, leadDestination, leadSchema, webhookPayload, whatsappUrl } from "@/lib/lead";
+import { trackWhatsAppPurchase } from "@/lib/tracking";
 import { Button } from "@/components/ui/button";
 import { ResultsCarousel } from "@/components/results-carousel";
 import { CampaignFaq } from "@/components/campaign-faq";
@@ -405,12 +406,15 @@ function LeadForm() {
     const url = whatsappUrl(result.data, WHATSAPP);
     if (!url) return;
     const tab = window.open("about:blank", "_blank");
-    void fetch(LEAD_WEBHOOK_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(webhookPayload(result.data, crypto.randomUUID(), Math.floor(Date.now() / 1000))),
-      keepalive: true,
-    }).catch(() => undefined);
+    const offer = result.data.lentes === "10" ? OFFERS.ten : OFFERS.twenty;
+    trackWhatsAppPurchase({
+      nome: result.data.nome,
+      whats: result.data.whats,
+      email: result.data.email,
+      unidade: result.data.unidade,
+      lentes: result.data.lentes,
+      price: offer.price,
+    });
     if (tab) tab.location.href = url;
     else window.location.assign(url);
   };
