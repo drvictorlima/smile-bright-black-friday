@@ -71,12 +71,12 @@ export function ResultsCarousel() {
   };
   return (
     <section aria-label="Resultados antes e depois" aria-roledescription="carrossel" className="mt-6">
-      <div className="relative aspect-square overflow-hidden rounded-lg border border-border bg-background" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+      <div className="relative aspect-square overflow-hidden rounded-lg" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
         {slides.map((slide, index) => (
           <img key={slide.src} src={slide.src} alt={slide.alt} width={1000} height={1000}
             fetchPriority={index === 0 ? "high" : "low"} loading={index === 0 ? "eager" : "lazy"} decoding="async"
             aria-hidden={index !== active} data-active={index === active}
-            className={`absolute inset-0 h-full w-full object-contain ${index === active ? "visible" : "invisible"}`} />
+            className={`absolute inset-0 h-full w-full object-cover ${index === active ? "visible" : "invisible"}`} />
         ))}
       </div>
       <div className="mt-2 flex items-center justify-between">
