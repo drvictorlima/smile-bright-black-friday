@@ -6,10 +6,11 @@ export const BLACK_FRIDAY_COUPON = "BLACKFRIDAY";
 export const leadSchema = z.object({
   nome: z.string().trim().min(2, "Informe seu nome.").max(100, "Use até 100 caracteres no nome.")
     .regex(/^[\p{L}\p{M} '\-]+$/u, "Use somente letras no nome."),
-  whats: z.string().trim().max(25).regex(/^[+\d\s().-]+$/, "Informe um WhatsApp válido com DDD.")
+  whats: z.string().trim().max(25).regex(/^[+\d\s().-]+$/, "Informe o WhatsApp com DDD (ex.: 11 98765-4321).")
     .transform((value) => value.replace(/\D/g, ""))
-    .refine((value) => /^(?:55)?[1-9]\d\d{8,9}$/.test(value), "Informe um WhatsApp válido com DDD."),
-  email: z.string().trim().max(255).email("Informe um e-mail válido."),
+    .refine((value) => /^(?:55)?[1-9][1-9](?:9\d{8}|[2-9]\d{7})$/.test(value), "Informe o WhatsApp com DDD (ex.: 11 98765-4321)."),
+  email: z.string().trim().max(255)
+    .regex(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/, "Informe um e-mail válido (ex.: nome@email.com)."),
   unidade: z.enum(["Tatuapé - SP", "Santos - SP", "Savassi - BH"], { message: "Selecione uma unidade." }),
   lentes: z.enum(["10", "20"], { message: "Escolha até 10 ou até 20 lentes." }),
   prazo: z.enum(["esta-semana", "data-futura"], { message: "Escolha quando deseja realizar o procedimento." }),

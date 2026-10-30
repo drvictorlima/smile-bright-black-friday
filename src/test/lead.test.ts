@@ -26,6 +26,21 @@ describe("Required scheduling qualification", () => {
       expect(leadSchema.safeParse({ ...lead, ...invalid }).success).toBe(false);
     }
   });
+  it("rejects e-mail addresses without a real domain", () => {
+    for (const email of ["paciente@example", "paciente@", "@example.com", "paciente example.com", "paciente@example.c"]) {
+      expect(leadSchema.safeParse({ ...lead, email }).success).toBe(false);
+    }
+  });
+  it("rejects phone numbers without a valid DDD", () => {
+    for (const whats of ["987654321", "10987654321", "119876543", "119876543210", "0011987654321"]) {
+      expect(leadSchema.safeParse({ ...lead, whats }).success).toBe(false);
+    }
+  });
+  it("accepts mobile, landline and country-code formats with DDD", () => {
+    for (const whats of ["11987654321", "(11) 98765-4321", "1132345678", "5511987654321", "+55 21 99876-5432"]) {
+      expect(leadSchema.safeParse({ ...lead, whats }).success).toBe(true);
+    }
+  });
   it.each([["10", "R$ 2.899", "12x de R$ 241,58"], ["20", "R$ 5.498", "12x de R$ 458,17"]])("sends the selected %s lenses with their exact price and installments", (lentes, price, installments) => {
     const message = decodeURIComponent(whatsappUrl({ ...lead, lentes }, "5511912686897") ?? "");
     expect(message).toContain(`Pacote: até ${lentes} lentes`);
