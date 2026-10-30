@@ -7,7 +7,7 @@
 - [x] Agrupar as fotos por rosto e intraorais com marca d’água discreta.
 - [x] Adicionar o vídeo em card separado e conferir a exibição.
 - [x] Agrupar as novas fotografias por paciente, com marca d’água apenas no depois.
-- [x] Reunir todos os antes e depois no topo e conferir troca automática a cada segundo.
+- [x] Reunir todos os antes e depois no topo e conferir troca automática a cada quatro segundos e navegação manual.
 - [ ] Confirmar reprodução do vídeo no navegador: arquivo disponível, mas o navegador de teste não iniciou a reprodução.
 - [x] Adicionar as duas novas fotografias ao carrossel com marca d’água leve sobre o lábio inferior.
-- [ ] Adicionar as dez fotos revisadas ao carrossel e remover as versões antigas repetidas.
+- [x] Adicionar as dez fotos revisadas ao carrossel e remover as versões antigas repetidas, inclusive dentro das montagens; conferir as 15 imagens no celular e computador.
