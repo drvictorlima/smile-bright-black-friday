@@ -10,7 +10,7 @@
 <!-- LOVABLE:END -->
 
 - Keep offer prices, original prices, installment counts, and derived amounts in `src/lib/offers.ts`; all price displays and WhatsApp messages use it to prevent inconsistent totals.
-- Keep lead validation, qualification routing, and WhatsApp URL generation in `src/lib/lead.ts`; the client-only handoff validates before navigation and never generates contact URLs for future-date leads. No lead data is persisted or sent to an app server.
+- Keep lead validation, qualification routing, WhatsApp URL generation and the n8n webhook payload in `src/lib/lead.ts`; this-week leads are POSTed from the browser to the clinic's n8n webhook, then WhatsApp opens in a new tab; future-date leads send nothing. No Meta Pixel script is installed in the site.
 - Keep the campaign coupon in `src/lib/lead.ts` and reuse it in page copy and WhatsApp messages so the displayed and sent codes stay identical.
 - Keep the visit countdown in `src/lib/countdown.ts`, using a client-side deadline and stopping at zero; isolate timing so expiration is testable without changing lead qualification.
 - Derive sitemap paths from required route-level `staticData.sitemap` decisions; exclude lead thank-you pages and omit lastmod without authoritative page-specific dates so public discovery stays accurate.

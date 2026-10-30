@@ -2,7 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { useCountdown } from "@/lib/countdown";
 import { OFFERS, currency, installmentText, savings } from "@/lib/offers";
-import { BLACK_FRIDAY_COUPON, isBotSubmission, leadDestination, leadSchema, whatsappUrl } from "@/lib/lead";
+import { BLACK_FRIDAY_COUPON, LEAD_WEBHOOK_URL, isBotSubmission, leadDestination, leadSchema, webhookPayload, whatsappUrl } from "@/lib/lead";
 import { Button } from "@/components/ui/button";
 import { ResultsCarousel } from "@/components/results-carousel";
 import { CampaignFaq } from "@/components/campaign-faq";
@@ -403,7 +403,16 @@ function LeadForm() {
       return;
     }
     const url = whatsappUrl(result.data, WHATSAPP);
-    if (url) window.location.assign(url);
+    if (!url) return;
+    const tab = window.open("about:blank", "_blank");
+    void fetch(LEAD_WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(webhookPayload(result.data, crypto.randomUUID(), Math.floor(Date.now() / 1000))),
+      keepalive: true,
+    }).catch(() => undefined);
+    if (tab) tab.location.href = url;
+    else window.location.assign(url);
   };
   const input =
     "min-h-12 w-full rounded-lg border border-input bg-background px-4 text-base outline-none focus:border-primary";

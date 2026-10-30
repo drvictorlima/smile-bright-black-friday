@@ -28,6 +28,14 @@ export function whatsappUrl(input: unknown, phone: string) {
   const message = `Olá! Quero garantir uma das últimas 4 vagas de Black Friday desta semana.\n\nNome: ${lead.nome}\nWhatsApp: ${lead.whats}\nE-mail: ${lead.email}\nUnidade: ${lead.unidade}\nPacote: até ${lead.lentes} lentes\nValor: ${currency(offer.price)}\nParcelamento: até ${installmentText(offer)} no cartão de crédito\nCupom: ${BLACK_FRIDAY_COUPON}\nQuero realizar o procedimento nesta semana.`;
   return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 }
+export const LEAD_WEBHOOK_URL = "https://acessodrvictorlima.app.n8n.cloud/";
+
+/** Payload posted to the clinic's n8n webhook for this-week leads. */
+export function webhookPayload(lead: z.infer<typeof leadSchema>, eventId: string, eventTime: number) {
+  const offer = lead.lentes === "10" ? OFFERS.ten : OFFERS.twenty;
+  return { event: "Purchase", event_id: eventId, event_time: eventTime, name: lead.nome, phone: lead.whats, email: lead.email, value: offer.price, currency: "BRL" as const };
+}
+
 /** Hidden honeypot field: real visitors never fill it, bots usually do. */
 export function isBotSubmission(honeypot: unknown) {
   return typeof honeypot === "string" && honeypot.trim().length > 0;
