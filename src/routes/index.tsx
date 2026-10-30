@@ -5,8 +5,6 @@ import { BLACK_FRIDAY_COUPON, leadDestination, leadSchema, whatsappUrl } from "@
 import { Button } from "@/components/ui/button";
 import { ResultsCarousel } from "@/components/results-carousel";
 import initialResult from "@/assets/resultado_inicial.webp.asset.json";
-import patientVideo from "@/assets/paciente_sorriso_web.mp4.asset.json";
-import patientVideoCover from "@/assets/paciente_video_capa.webp.asset.json";
 
 // Troque pelo número real (com DDI 55 + DDD), só dígitos.
 const WHATSAPP = "5511912686897";
@@ -171,7 +169,6 @@ function Index() {
         </ol>
       </section>
 
-      <PatientResults />
 
       {/* Depoimentos */}
       <section className="px-5 pt-12">
@@ -308,22 +305,6 @@ function Index() {
   );
 }
 
-function PatientResults() {
-  return (
-    <section aria-labelledby="patient-results-title" className="px-5 pt-10">
-      <h2 id="patient-results-title" className="text-center font-display text-3xl">Transformação do sorriso</h2>
-      <div className="mt-5 space-y-5">
-        <figure className="overflow-hidden rounded-lg border border-border bg-card">
-          <figcaption className="px-4 py-3 text-sm font-semibold text-primary">Resultado em vídeo</figcaption>
-          <video aria-label="Vídeo do sorriso da paciente" controls playsInline preload="none" poster={patientVideoCover.url} width={576} height={1024} className="block aspect-[9/16] w-full object-contain">
-            <source src={patientVideo.url} type="video/mp4" />
-            Seu navegador não suporta a reprodução deste vídeo.
-          </video>
-        </figure>
-      </div>
-    </section>
-  );
-}
 
 function Coupon() {
   return (
