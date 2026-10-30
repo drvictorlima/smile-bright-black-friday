@@ -15,6 +15,7 @@ const DESC =
   `Lentes em resina sem desgaste na técnica estratificada realista, prontas em 3h, 10 anos de garantia e 12x sem juros. Cupom ${BLACK_FRIDAY_COUPON}. Últimas 4 vagas com desconto, só para quem realizar o procedimento ainda esta semana.`;
 
 export const Route = createFileRoute("/")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: TITLE },
