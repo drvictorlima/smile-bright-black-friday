@@ -16,3 +16,5 @@
 - Derive sitemap paths from required route-level `staticData.sitemap` decisions; exclude lead thank-you pages and omit lastmod without authoritative page-specific dates so public discovery stays accurate.
 - Keep reference-derived campaign FAQs in `CampaignFaq` using the shared accordion; adapt answers to current campaign conditions and retain the mandatory lead form before WhatsApp.
 - Serve patient photo collages and the separate patient video through CDN asset pointers; keep all photo comparisons in the hero ResultsCarousel, prioritize its first image and load later slides after hydration, and use video preload="none" to preserve initial page speed. Carousel controls and reduced-motion handling let visitors inspect results without duplication farther down the page.
+- Security headers (CSP, HSTS, frame-deny, nosniff, permissions) and long cache for /assets are set in `src/server.ts`; update the CSP there when adding any third-party origin, or it will be blocked.
+- Fonts are self-hosted via @fontsource (latin subsets only) to avoid render-blocking third-party requests.

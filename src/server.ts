@@ -49,7 +49,7 @@ export default {
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
-      return await normalizeCatastrophicSsrResponse(response);
+      return withSecurityHeaders(request, await normalizeCatastrophicSsrResponse(response));
     } catch (error) {
       console.error(error);
       return new Response(renderErrorPage(), {
@@ -59,3 +59,35 @@ export default {
     }
   },
 };
+
+const CSP = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline'",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob: https:",
+  "font-src 'self' data:",
+  "media-src 'self' https:",
+  "connect-src 'self' https:",
+  "frame-ancestors 'none'",
+  "base-uri 'self'",
+  "form-action 'self' https://wa.me https://api.whatsapp.com",
+  "object-src 'none'",
+  "upgrade-insecure-requests",
+].join("; ");
+
+function withSecurityHeaders(request: Request, response: Response): Response {
+  const res = new Response(response.body, response);
+  const h = res.headers;
+  h.set("Content-Security-Policy", CSP);
+  h.set("X-Frame-Options", "DENY");
+  h.set("X-Content-Type-Options", "nosniff");
+  h.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  h.set("Strict-Transport-Security", "max-age=63072000; includeSubDomains; preload");
+  h.set("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=(), usb=()");
+  h.set("Cross-Origin-Opener-Policy", "same-origin");
+  const path = new URL(request.url).pathname;
+  if (path.startsWith("/assets/") && res.ok) {
+    h.set("Cache-Control", "public, max-age=31536000, immutable");
+  }
+  return res;
+}
