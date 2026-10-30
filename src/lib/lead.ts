@@ -13,7 +13,6 @@ export const leadSchema = z.object({
   unidade: z.enum(["Tatuapé - SP", "Santos - SP", "Savassi - BH"], { message: "Selecione uma unidade." }),
   lentes: z.enum(["10", "20"], { message: "Escolha até 10 ou até 20 lentes." }),
   prazo: z.enum(["esta-semana", "data-futura"], { message: "Escolha quando deseja realizar o procedimento." }),
-  ciente: z.literal("sim", { message: "Confirme que está ciente do valor e das condições da oferta." }),
 });
 
 export function leadDestination(prazo: z.infer<typeof leadSchema>["prazo"]) {
@@ -25,6 +24,6 @@ export function whatsappUrl(input: unknown, phone: string) {
   if (leadDestination(lead.prazo) !== "whatsapp") return null;
   if (!/^\d{10,15}$/.test(phone)) return null;
   const offer = lead.lentes === "10" ? OFFERS.ten : OFFERS.twenty;
-  const message = `Olá! Quero garantir uma das últimas 4 vagas de Black Friday desta semana.\n\nNome: ${lead.nome}\nWhatsApp: ${lead.whats}\nE-mail: ${lead.email}\nUnidade: ${lead.unidade}\nPacote: até ${lead.lentes} lentes\nValor: ${currency(offer.price)}\nParcelamento: até ${installmentText(offer)} no cartão de crédito\nCupom: ${BLACK_FRIDAY_COUPON}\nQuero realizar o procedimento nesta semana.\nEstou ciente do valor de ${currency(offer.price)} para até ${lead.lentes} lentes e de que o desconto é válido somente para as últimas 4 vagas desta semana.`;
+  const message = `Olá! Quero garantir uma das últimas 4 vagas de Black Friday desta semana.\n\nNome: ${lead.nome}\nWhatsApp: ${lead.whats}\nE-mail: ${lead.email}\nUnidade: ${lead.unidade}\nPacote: até ${lead.lentes} lentes\nValor: ${currency(offer.price)}\nParcelamento: até ${installmentText(offer)} no cartão de crédito\nCupom: ${BLACK_FRIDAY_COUPON}\nQuero realizar o procedimento nesta semana.`;
   return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 }

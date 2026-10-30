@@ -459,13 +459,6 @@ function LeadForm() {
             Em uma data futura — valor cheio, sem desconto
           </label>
         </fieldset>
-        <label className="flex cursor-pointer items-start gap-3 py-2 text-sm text-muted-foreground">
-          <input type="checkbox" name="ciente" value="sim" required className="mt-1 size-4 shrink-0 accent-primary" />
-          <span>
-            Estou ciente {selectedOffer ? `do valor de ${currency(selectedOffer.price)} para até ${lentes} lentes e ` : "do valor do pacote escolhido e "}
-            de que o desconto com o cupom {BLACK_FRIDAY_COUPON} é válido somente para as últimas 4 vagas desta semana. Datas futuras pagam o valor cheio, sem desconto.
-          </span>
-        </label>
         {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
         <Button type="submit" className="btn-cta h-auto whitespace-normal text-sm">
           Garantir minha vaga desta semana
