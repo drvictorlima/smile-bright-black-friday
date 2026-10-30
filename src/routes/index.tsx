@@ -6,7 +6,7 @@ import { BLACK_FRIDAY_COUPON, isBotSubmission, leadDestination, leadSchema, what
 import { Button } from "@/components/ui/button";
 import { ResultsCarousel } from "@/components/results-carousel";
 import { CampaignFaq } from "@/components/campaign-faq";
-import initialResult from "@/assets/resultado_inicial.webp.asset.json";
+import initialResult from "@/assets/sorriso_mulher_marca_existente.webp.asset.json";
 
 // Troque pelo número real (com DDI 55 + DDD), só dígitos.
 const WHATSAPP = "5511912686897";

@@ -16,6 +16,7 @@ import profile from "@/assets/sorriso_perfil_marca_existente.webp.asset.json";
 import womanSmile from "@/assets/sorriso_mulher_marca_existente.webp.asset.json";
 
 const slides = [
+  { src: womanSmile.url, alt: "Resultado — detalhe frontal do sorriso da paciente" },
   { src: initial.url, alt: "Antes e depois — resultado inicial" },
   { src: face.url, alt: "Antes e depois — paciente 1, fotografias de rosto" },
   { src: smile.url, alt: "Antes e depois — paciente 1, fotografias intraorais" },
@@ -27,7 +28,6 @@ const slides = [
   { src: newWomanAngle.url, alt: "Resultado — sorriso da paciente em ângulo" },
   { src: manAngle.url, alt: "Resultado — detalhe do sorriso do paciente" },
   { src: profile.url, alt: "Resultado — sorriso do paciente de perfil" },
-  { src: womanSmile.url, alt: "Resultado — detalhe frontal do sorriso da paciente" },
 ];
 
 export function ResultsCarousel() {
