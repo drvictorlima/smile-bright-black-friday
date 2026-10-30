@@ -8,6 +8,7 @@
 - [x] Adicionar o vídeo em card separado e conferir a exibição.
 - [x] Agrupar as novas fotografias por paciente, com marca d’água apenas no depois.
 - [x] Reunir todos os antes e depois no topo e conferir troca automática a cada quatro segundos e navegação manual.
-- [ ] Confirmar reprodução do vídeo no navegador: arquivo disponível, mas o navegador de teste não iniciou a reprodução.
+- [x] Remover o vídeo conforme solicitado; conferência de reprodução não se aplica mais.
 - [x] Adicionar as duas novas fotografias ao carrossel com marca d’água leve sobre o lábio inferior.
 - [x] Adicionar as dez fotos revisadas ao carrossel e remover as versões antigas repetidas, inclusive dentro das montagens; conferir as 15 imagens no celular e computador.
+- [x] Ajustar o contador para três minutos e conferir a mensagem final com “Sim” levando ao formulário.

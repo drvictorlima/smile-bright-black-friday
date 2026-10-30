@@ -1,5 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useEffect, useState, type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
+import { useCountdown } from "@/lib/countdown";
 import { OFFERS, currency, installmentText, savings } from "@/lib/offers";
 import { BLACK_FRIDAY_COUPON, leadDestination, leadSchema, whatsappUrl } from "@/lib/lead";
 import { Button } from "@/components/ui/button";
@@ -28,21 +29,6 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-function useCountdown() {
-  const [left, setLeft] = useState<number | null>(null);
-  useEffect(() => {
-    const end = new Date();
-    end.setHours(23, 59, 59, 999);
-    const tick = () => setLeft(Math.max(0, end.getTime() - Date.now()));
-    tick();
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
-  }, []);
-  const s = Math.floor((left ?? 0) / 1000);
-  const p = (n: number) => String(n).padStart(2, "0");
-  return { h: p(Math.floor(s / 3600)), m: p(Math.floor((s % 3600) / 60)), s: p(s % 60) };
-}
-
 const Cta = ({ children = "Garantir meu desconto Black Friday" }: { children?: string }) => (
   <Button asChild className="btn-cta h-auto whitespace-normal text-base">
     <a href="#vaga">{children}</a>
@@ -51,7 +37,7 @@ const Cta = ({ children = "Garantir meu desconto Black Friday" }: { children?: s
 
 const Warn = () => (
   <p className="mt-3 text-center text-xs text-muted-foreground">
-    ⏳ Quando o cronômetro zerar, o desconto acaba e o preço volta ao valor cheio.
+    ⏳ Última oportunidade de agendar com o valor promocional, sujeita à disponibilidade desta semana.
   </p>
 );
 
@@ -62,10 +48,31 @@ function Index() {
       {/* Faixa de urgência */}
       <div className="sticky top-0 z-30 flex items-center justify-center gap-2 bg-accent px-3 py-2 text-xs font-bold uppercase text-accent-foreground">
         <span className="text-lg leading-none" aria-hidden>🔥</span>
-        <span>Nossa Black Friday se encerra em</span>
-        <span className="font-display text-xl leading-none tracking-wider tabular-nums">
-          {t.h}:{t.m}:{t.s}
-        </span>
+        {t.expired ? (
+          <div className="flex min-w-0 flex-1 items-center gap-3">
+            <p role="status" className="flex-1 text-xs leading-snug">
+              AGORA essa é a última vaga para agendar com o valor promocional, deseja agendar?
+            </p>
+            <Button
+              variant="secondary"
+              className="min-h-11 shrink-0 px-4"
+              onClick={() => {
+                const form = document.getElementById("vaga");
+                form?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" });
+                form?.querySelector<HTMLInputElement>('input[name="nome"]')?.focus({ preventScroll: true });
+              }}
+            >
+              Sim
+            </Button>
+          </div>
+        ) : (
+          <>
+            <span>Nossa Black Friday se encerra em</span>
+            <span className="shrink-0 font-display text-xl leading-none tracking-wider tabular-nums" aria-label="Tempo restante">
+              {t.minutes}:{t.seconds}
+            </span>
+          </>
+        )}
       </div>
 
       {/* Hero */}
@@ -382,9 +389,9 @@ function LeadForm() {
   const input =
     "min-h-12 w-full rounded-lg border border-input bg-background px-4 text-base outline-none focus:border-primary";
   return (
-    <section id="vaga" className="mx-5 mt-12 scroll-mt-14 rounded-2xl border-2 border-primary bg-card p-6">
+    <section id="vaga" className="mx-5 mt-12 scroll-mt-32 rounded-2xl border-2 border-primary bg-card p-6">
       <p className="text-xs font-semibold uppercase tracking-widest text-accent">
-        Atenção — o desconto acaba quando o cronômetro zerar
+        Atenção — última oportunidade de agendar com o valor promocional
       </p>
       <h2 className="mt-2 font-display text-4xl leading-none">
         Sua última oportunidade: de <s className="text-muted-foreground">{currency(OFFERS.twenty.original)}</s> por <span className="text-gold">{currency(OFFERS.twenty.price)}</span>
