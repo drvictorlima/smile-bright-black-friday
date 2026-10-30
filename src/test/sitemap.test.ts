@@ -4,7 +4,7 @@ import { sitemapStaticPaths, sitemapXML } from "../lib/sitemap";
 
 describe("public campaign sitemap", () => {
   it("includes the campaign but excludes thank-you and sitemap endpoints", () => {
-    expect(sitemapStaticPaths(getRouter())).toEqual(["/"]);
+    expect(sitemapStaticPaths(getRouter())).toEqual(["/", "/privacidade"]);
   });
   it("uses the public domain without inventing modification dates", () => {
     const xml = sitemapXML("https://megadescontoblackfriday.com", [{ path: "/" }]);
