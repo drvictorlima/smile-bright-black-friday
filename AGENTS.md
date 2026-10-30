@@ -14,4 +14,5 @@
 - Keep the campaign coupon in `src/lib/lead.ts` and reuse it in page copy and WhatsApp messages so the displayed and sent codes stay identical.
 - Keep the visit countdown in `src/lib/countdown.ts`, using a client-side deadline and stopping at zero; isolate timing so expiration is testable without changing lead qualification.
 - Derive sitemap paths from required route-level `staticData.sitemap` decisions; exclude lead thank-you pages and omit lastmod without authoritative page-specific dates so public discovery stays accurate.
+- Keep reference-derived campaign FAQs in `CampaignFaq` using the shared accordion; adapt answers to current campaign conditions and retain the mandatory lead form before WhatsApp.
 - Serve patient photo collages and the separate patient video through CDN asset pointers; keep all photo comparisons in the hero ResultsCarousel, prioritize its first image and load later slides after hydration, and use video preload="none" to preserve initial page speed. Carousel controls and reduced-motion handling let visitors inspect results without duplication farther down the page.
