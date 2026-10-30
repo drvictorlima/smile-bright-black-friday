@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { RESULTS_INTERVAL_MS } from "@/lib/results";
 import initial from "@/assets/resultado_inicial.webp.asset.json";
 import face from "@/assets/resultado_paciente_rosto.webp.asset.json";
 import smile from "@/assets/resultado_paciente_intraoral.webp.asset.json";
@@ -38,7 +39,7 @@ export function ResultsCarousel() {
   }, []);
   useEffect(() => {
     if (!playing || !ready || !visible) return;
-    const timer = window.setInterval(() => setActive((current) => (current + 1) % slides.length), 1000);
+    const timer = window.setInterval(() => setActive((current) => (current + 1) % slides.length), RESULTS_INTERVAL_MS);
     return () => window.clearInterval(timer);
   }, [playing, ready, visible]);
   const move = (direction: number) => {
