@@ -5,9 +5,7 @@ import { RESULTS_INTERVAL_MS } from "@/lib/results";
 import initial from "@/assets/resultado_inicial.webp.asset.json";
 import face from "@/assets/resultado_paciente_rosto.webp.asset.json";
 import smile from "@/assets/resultado_paciente_intraoral.webp.asset.json";
-import second from "@/assets/resultado_paciente_dois_revisado.webp.asset.json";
 import third from "@/assets/resultado_paciente_tres.webp.asset.json";
-import details from "@/assets/resultado_paciente_detalhes_revisado.webp.asset.json";
 import womanAngle from "@/assets/resultado_mulher_angulo.webp.asset.json";
 import womanFront from "@/assets/sorriso_mulher_frontal.webp.asset.json";
 import manComparison from "@/assets/antes_depois_homem.webp.asset.json";
@@ -22,10 +20,8 @@ const slides = [
   { src: initial.url, alt: "Antes e depois — resultado inicial" },
   { src: face.url, alt: "Antes e depois — paciente 1, fotografias de rosto" },
   { src: smile.url, alt: "Antes e depois — paciente 1, fotografias intraorais" },
-  { src: second.url, alt: "Antes e depois — paciente 2, fotografias de rosto" },
   { src: womanAngle.url, alt: "Resultado — paciente 2, sorriso em outro ângulo" },
   { src: third.url, alt: "Antes e depois — paciente 3, fotografias de rosto" },
-  { src: details.url, alt: "Resultado — paciente 3, detalhes e outros ângulos" },
   { src: manComparison.url, alt: "Antes e depois — paciente com aparelho antes do procedimento" },
   { src: womanComparison.url, alt: "Antes e depois — transformação do sorriso da paciente" },
   { src: womanFront.url, alt: "Resultado — sorriso frontal da paciente" },
