@@ -9,4 +9,4 @@
 - [x] Agrupar as novas fotografias por paciente, com marca d’água apenas no depois.
 - [x] Reunir todos os antes e depois no topo e conferir troca automática a cada segundo.
 - [ ] Confirmar reprodução do vídeo no navegador: arquivo disponível, mas o navegador de teste não iniciou a reprodução.
-- [ ] Adicionar as duas novas fotografias ao carrossel com marca d’água leve sobre o lábio inferior.
+- [x] Adicionar as duas novas fotografias ao carrossel com marca d’água leve sobre o lábio inferior.
