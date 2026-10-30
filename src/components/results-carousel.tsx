@@ -8,6 +8,8 @@ import smile from "@/assets/resultado_paciente_intraoral.webp.asset.json";
 import second from "@/assets/resultado_paciente_dois.webp.asset.json";
 import third from "@/assets/resultado_paciente_tres.webp.asset.json";
 import details from "@/assets/resultado_paciente_tres_detalhes.webp.asset.json";
+import womanAngle from "@/assets/resultado_mulher_angulo.webp.asset.json";
+import manAngle from "@/assets/resultado_homem_angulo.webp.asset.json";
 
 const slides = [
   { src: initial.url, alt: "Antes e depois — resultado inicial" },
@@ -16,6 +18,8 @@ const slides = [
   { src: second.url, alt: "Antes e depois — paciente 2, rosto e detalhe do sorriso" },
   { src: third.url, alt: "Antes e depois — paciente 3, fotografias de rosto" },
   { src: details.url, alt: "Resultado — paciente 3, detalhes e outros ângulos" },
+  { src: womanAngle.url, alt: "Resultado — sorriso da paciente em outro ângulo" },
+  { src: manAngle.url, alt: "Resultado — detalhe do sorriso do paciente" },
 ];
 
 export function ResultsCarousel() {
