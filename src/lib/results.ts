@@ -1,1 +1,1 @@
-export const RESULTS_INTERVAL_MS = 1000;
+export const RESULTS_INTERVAL_MS = 2750;
