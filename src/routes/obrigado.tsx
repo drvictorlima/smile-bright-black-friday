@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { HeartHandshake } from "lucide-react";
 
 export const Route = createFileRoute("/obrigado")({
+  staticData: { sitemap: false },
   head: () => ({
     meta: [
       { title: "Obrigado pelo interesse | Sorriso Black Friday" },
