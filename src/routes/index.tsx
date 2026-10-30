@@ -237,7 +237,6 @@ function Index() {
 
       <CampaignFaq />
 
-      <LeadForm />
 
       {/* Números */}
       <section className="mt-12 grid grid-cols-3 gap-2 px-5 text-center">
@@ -310,6 +309,8 @@ function Index() {
         </div>
         <Warn />
       </section>
+
+      <LeadForm />
 
       <footer className="mt-12 space-y-2 px-5 text-center text-xs text-muted-foreground">
         <p>
