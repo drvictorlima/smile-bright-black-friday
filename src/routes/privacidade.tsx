@@ -23,7 +23,7 @@ function Privacy() {
       <h2 className="text-lg font-semibold text-foreground">Quais dados coletamos</h2>
       <p>Nome, WhatsApp, e-mail, unidade de preferência, pacote de interesse e quando deseja realizar o procedimento.</p>
       <h2 className="text-lg font-semibold text-foreground">Para que usamos</h2>
-      <p>Exclusivamente para entrar em contato sobre o agendamento e as condições da campanha. Os dados não são armazenados neste site: ao enviar o formulário, eles seguem diretamente na mensagem que você mesmo envia pelo WhatsApp da clínica.</p>
+      <p>Para entrar em contato sobre o agendamento e as condições da campanha. Os dados não são armazenados neste site: ao enviar o formulário, nome, WhatsApp, e-mail e valor do pacote são enviados à ferramenta de atendimento e automação da clínica, e seguem também na mensagem que você mesmo envia pelo WhatsApp.</p>
       <h2 className="text-lg font-semibold text-foreground">Compartilhamento</h2>
       <p>Não vendemos nem compartilhamos seus dados com terceiros para fins de publicidade. A conversa ocorre pelo WhatsApp, sujeito à política de privacidade do próprio WhatsApp.</p>
       <h2 className="text-lg font-semibold text-foreground">Seus direitos</h2>

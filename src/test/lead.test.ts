@@ -66,3 +66,11 @@ d2("honeypot", () => {
     e2(isBotSubmission(null)).toBe(false);
   });
 });
+import { webhookPayload } from "@/lib/lead";
+d2("n8n webhook payload", () => {
+  i2.each([["10", 2899], ["20", 5498]])("sends Purchase with value for %s lenses in BRL", (lentes, value) => {
+    const data = leadSchema.parse({ ...lead, lentes });
+    const p = webhookPayload(data, "id1", 1);
+    e2(p).toMatchObject({ event: "Purchase", event_id: "id1", value, currency: "BRL", phone: "11987654321", email: "paciente@example.com", name: "Paciente Teste" });
+  });
+});
