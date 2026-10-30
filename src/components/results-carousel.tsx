@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RESULTS_INTERVAL_MS } from "@/lib/results";
@@ -46,9 +46,18 @@ export function ResultsCarousel() {
     setPlaying(false);
     setActive((current) => (current + direction + slides.length) % slides.length);
   };
+  const touch = useRef<number | null>(null);
+  const onTouchStart = (event: React.TouchEvent) => { touch.current = event.touches[0]?.clientX ?? null; };
+  const onTouchEnd = (event: React.TouchEvent) => {
+    const end = event.changedTouches[0]?.clientX;
+    if (touch.current === null || end === undefined) return;
+    const delta = end - touch.current;
+    touch.current = null;
+    if (Math.abs(delta) > 40) move(delta < 0 ? 1 : -1);
+  };
   return (
     <section aria-label="Resultados antes e depois" aria-roledescription="carrossel" className="mt-6">
-      <div className="relative aspect-square overflow-hidden rounded-lg border border-border bg-background">
+      <div className="relative aspect-square overflow-hidden rounded-lg border border-border bg-background" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
         {slides.map((slide, index) => (
           <img key={slide.src} src={slide.src} alt={slide.alt} width={1000} height={1000}
             fetchPriority={index === 0 ? "high" : "low"} loading={index === 0 ? "eager" : "lazy"} decoding="async"
