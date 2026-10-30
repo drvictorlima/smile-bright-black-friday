@@ -47,10 +47,11 @@ export function ResultsCarousel() {
     setActive((current) => (current + direction + slides.length) % slides.length);
   };
   const touch = useRef<number | null>(null);
-  const onTouchStart = (event: React.TouchEvent) => { touch.current = event.touches[0].clientX; };
+  const onTouchStart = (event: React.TouchEvent) => { touch.current = event.touches[0]?.clientX ?? null; };
   const onTouchEnd = (event: React.TouchEvent) => {
-    if (touch.current === null) return;
-    const delta = event.changedTouches[0].clientX - touch.current;
+    const end = event.changedTouches[0]?.clientX;
+    if (touch.current === null || end === undefined) return;
+    const delta = end - touch.current;
     touch.current = null;
     if (Math.abs(delta) > 40) move(delta < 0 ? 1 : -1);
   };
