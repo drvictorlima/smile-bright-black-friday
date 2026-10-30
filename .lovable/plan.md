@@ -2,6 +2,7 @@
 
 ## O que muda
 1. Quando o lead escolhe "Nesta semana" e o formulário é aprovado, o site envia para o webhook `https://acessodrvictorlima.app.n8n.cloud/` (POST, JSON):
+   - `event`: "Purchase" (evento de compra), com `event_id` único e `event_time`
    - `name`, `phone`, `email`
    - `value`: 2899 (até 10 lentes) ou 5498 (até 20 lentes), lidos da tabela de preços do site
    - `currency`: "BRL"
