@@ -10,3 +10,4 @@
 - [x] Reunir todos os antes e depois no topo e conferir troca automática a cada segundo.
 - [ ] Confirmar reprodução do vídeo no navegador: arquivo disponível, mas o navegador de teste não iniciou a reprodução.
 - [x] Adicionar as duas novas fotografias ao carrossel com marca d’água leve sobre o lábio inferior.
+- [ ] Adicionar as dez fotos revisadas ao carrossel e remover as versões antigas repetidas.
