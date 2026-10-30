@@ -1,16 +1,22 @@
-# Envio de "Purchase" pela API de Conversões: não será feito
+# Envio do lead para o webhook do n8n + WhatsApp em nova aba
 
-## Decisão
-O site não vai enviar à Meta o evento "Purchase" nem os dados do formulário (nome, e-mail, telefone, unidade, pacote, valor), nem pelo navegador nem pelo servidor. As regras da Meta proíbem compartilhar agendamentos de tratamento de saúde e dados de pacientes, mesmo com hash, servidor ou outro nome de evento.
+## O que muda
+1. Quando o lead escolhe "Nesta semana" e o formulário é aprovado, o site envia para o webhook `https://acessodrvictorlima.app.n8n.cloud/` (POST, JSON):
+   - `name`, `phone`, `email`
+   - `value`: 2899 (até 10 lentes) ou 5498 (até 20 lentes), lidos da tabela de preços do site
+   - `currency`: "BRL"
+2. Logo depois, o WhatsApp abre em uma nova aba com a mensagem atual (nome, pacote, valor, cupom BLACKFRIDAY).
+3. Nenhum script do Pixel da Meta é instalado no site.
+4. Leads de "data futura" continuam indo para a página de agradecimento, sem envio ao webhook.
+5. A Política de Privacidade passa a dizer que os dados do formulário vão para a ferramenta de atendimento da clínica.
 
-## O que fica como está
-- O formulário, a validação e o envio ao WhatsApp continuam iguais, com o valor do pacote já incluído na mensagem.
-- A campanha usa o que a Meta já mede sozinha: impressões, cliques e custo por clique.
-- Os resultados se comparam contando os leads que chegam no WhatsApp.
-
-## Opções seguras, se você quiser depois
-- Página de demonstração para a aula, sem enviar nada.
-- Controle interno de leads por dia e valor do pacote, sem enviar nada à Meta.
+## Observação
+O que o n8n fizer depois com esses dados fica sob sua responsabilidade. Repassar à Meta dados de pacientes como "Purchase" continua sendo contra as regras dela.
 
 ## Detalhes técnicos
-Nenhuma alteração de código, função de servidor ou chave de acesso.
+- `src/lib/lead.ts`: nova função `webhookPayload(lead)` que monta `{ name, phone, email, value, currency: "BRL" }` a partir de `OFFERS`, além de uma constante com a URL do webhook. Testes em `src/test/lead.test.ts` para os valores 2899/5498 e "BRL".
+- `src/routes/index.tsx` (envio do formulário): abrir a aba com `window.open("about:blank")` na hora do clique, para o navegador não bloquear; enviar `fetch(url, { method: "POST", headers: {"Content-Type":"application/json"}, body, keepalive: true })` sem esperar resposta; depois apontar a aba para a URL do WhatsApp (se a aba for bloqueada, a própria página vai para o WhatsApp). O honeypot continua bloqueando robôs antes do envio.
+- `src/server.ts`: incluir `https://acessodrvictorlima.app.n8n.cloud` em `connect-src` na CSP.
+- `src/routes/privacidade.tsx`: parágrafo sobre o envio para a ferramenta de automação da clínica.
+- `AGENTS.md`: trocar a regra "nenhum dado de lead é enviado a servidor" pela regra do webhook.
+- O n8n precisa responder com CORS liberado para `https://megadescontoblackfriday.com` (ou responder a qualquer origem); sem isso, o navegador pode bloquear o envio.
