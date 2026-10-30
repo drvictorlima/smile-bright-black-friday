@@ -3,8 +3,8 @@ import { useEffect, useState, type FormEvent } from "react";
 import { OFFERS, currency, installmentText, savings } from "@/lib/offers";
 import { BLACK_FRIDAY_COUPON, leadDestination, leadSchema, whatsappUrl } from "@/lib/lead";
 import { Button } from "@/components/ui/button";
-import patientFace from "@/assets/paciente_rosto.webp.asset.json";
-import patientSmile from "@/assets/paciente_intraoral.webp.asset.json";
+import { ResultsCarousel } from "@/components/results-carousel";
+import initialResult from "@/assets/resultado_inicial.webp.asset.json";
 import patientVideo from "@/assets/paciente_sorriso_web.mp4.asset.json";
 import patientVideoCover from "@/assets/paciente_video_capa.webp.asset.json";
 
@@ -25,7 +25,7 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "preload", href: "/img/ba.webp", as: "image" }],
+    links: [{ rel: "preload", href: initialResult.url, as: "image" }],
   }),
   component: Index,
 });
@@ -88,14 +88,7 @@ function Index() {
             </div>
           ))}
         </div>
-        <img
-          src="/img/ba.webp"
-          alt="Antes e depois de lentes em resina"
-          width={800}
-          height={800}
-          fetchPriority="high"
-          className="mt-6 aspect-square w-full rounded-2xl border border-border object-cover"
-        />
+        <ResultsCarousel />
         <p className="mt-3 text-sm">⭐⭐⭐⭐⭐ +55.000 sorrisos transformados • 99% de satisfação</p>
         <p className="mt-3 text-xs text-muted-foreground">
           Últimas <strong className="text-accent">4 vagas</strong> com desconto — somente para quem fizer ainda esta semana
@@ -320,14 +313,6 @@ function PatientResults() {
     <section aria-labelledby="patient-results-title" className="px-5 pt-10">
       <h2 id="patient-results-title" className="text-center font-display text-3xl">Transformação do sorriso</h2>
       <div className="mt-5 space-y-5">
-        <figure>
-          <figcaption className="mb-2 text-sm font-semibold text-primary">Fotografias de rosto</figcaption>
-          <img src={patientFace.url} alt="Fotografias de rosto da paciente, antes e depois do procedimento, com marca d’água Doutor Victor Lima e Equipe" width={1200} height={1067} loading="lazy" decoding="async" className="h-auto w-full rounded-lg" />
-        </figure>
-        <figure>
-          <figcaption className="mb-2 text-sm font-semibold text-primary">Fotografias intraorais</figcaption>
-          <img src={patientSmile.url} alt="Fotografias do sorriso da paciente, antes e depois do procedimento, com marca d’água Doutor Victor Lima e Equipe" width={1000} height={1333} loading="lazy" decoding="async" className="h-auto w-full rounded-lg" />
-        </figure>
         <figure className="overflow-hidden rounded-lg border border-border bg-card">
           <figcaption className="px-4 py-3 text-sm font-semibold text-primary">Resultado em vídeo</figcaption>
           <video aria-label="Vídeo do sorriso da paciente" controls playsInline preload="none" poster={patientVideoCover.url} width={576} height={1024} className="block aspect-[9/16] w-full object-contain">
