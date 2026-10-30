@@ -14,7 +14,6 @@ import newWomanAngle from "@/assets/sorriso_mulher_angulo.webp.asset.json";
 import manAngle from "@/assets/sorriso_homem_marca_existente.webp.asset.json";
 import profile from "@/assets/sorriso_perfil_marca_existente.webp.asset.json";
 import womanSmile from "@/assets/sorriso_mulher_marca_existente.webp.asset.json";
-import markedAngle from "@/assets/sorriso_angulo_marca_existente.webp.asset.json";
 
 const slides = [
   { src: initial.url, alt: "Antes e depois — resultado inicial" },
@@ -29,7 +28,6 @@ const slides = [
   { src: manAngle.url, alt: "Resultado — detalhe do sorriso do paciente" },
   { src: profile.url, alt: "Resultado — sorriso do paciente de perfil" },
   { src: womanSmile.url, alt: "Resultado — detalhe frontal do sorriso da paciente" },
-  { src: markedAngle.url, alt: "Resultado — sorriso em ângulo com marca d’água original" },
 ];
 
 export function ResultsCarousel() {
