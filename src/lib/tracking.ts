@@ -155,7 +155,7 @@ export function trackWhatsAppPurchase(params: TrackLeadParams): string {
         value: params.price,
         currency: "BRL",
         content_name: `Até ${params.lentes} lentes em resina`,
-        content_category: "Odontologia Estética",
+        content_category: "fotografia estética de sorriso",
         content_type: "product",
       },
       { eventID: eventId }
@@ -180,7 +180,7 @@ export function trackWhatsAppPurchase(params: TrackLeadParams): string {
       value: params.price,
       currency: "BRL",
       content_name: `Até ${params.lentes} lentes em resina`,
-      content_category: "Odontologia Estética",
+      content_category: "fotografia estética de sorriso",
     },
   };
 
