@@ -1,16 +1,16 @@
 /**
- * Módulo de Rastreamento Avançado (Meta Pixel + CAPI n8n)
+ * Módulo de Rastreamento Avançado (Meta Pixel + CAPI n8n + GTM dataLayer)
  * 
- * Regra:
- * - PageView é disparado no carregamento pelo Pixel do navegador.
- * - Purchase é disparado EXCLUSIVAMENTE quando o visitante escolhe realizar o procedimento nesta semana e clica para ir ao WhatsApp.
- * - Garante nota máxima de EMQ (Event Match Quality) enviando cookies _fbp, _fbc, IP, User-Agent, nome, whats, email e event_id para deduplicação.
+ * - Suporta envio simultâneo pelo Navegador (Pixel + dataLayer GTM) e pelo Servidor (CAPI n8n).
+ * - Deduplicação automática via event_id.
+ * - Coleta cookies _fbp, _fbc (ou fbclid) e User-Agent para EMQ máxima.
  */
 
 declare global {
   interface Window {
     fbq?: (...args: any[]) => void;
     _fbq?: any;
+    dataLayer?: any[];
   }
 }
 
@@ -48,6 +48,58 @@ export function generateEventId(): string {
   return `evt_${Date.now()}_${Math.random().toString(36).substring(2, 10)}`;
 }
 
+/**
+ * Disparo duplo e deduplicado do evento PageView (Navegador + Servidor + GTM)
+ */
+export function trackPageView(): string {
+  const eventId = generateEventId();
+  const eventTime = Math.floor(Date.now() / 1000);
+  const fbp = getFbp();
+  const fbc = getFbc();
+  const pageUrl = typeof window !== "undefined" ? window.location.href : "https://megadescontoblackfriday.com/";
+  const userAgent = typeof navigator !== "undefined" ? navigator.userAgent : "";
+
+  // 1. DataLayer para Google Tag Manager (GTM)
+  if (typeof window !== "undefined") {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "page_view",
+      event_id: eventId,
+      page_location: pageUrl,
+      page_title: typeof document !== "undefined" ? document.title : "",
+    });
+  }
+
+  // 2. Disparo no navegador via Meta Pixel com eventID de deduplicação
+  if (typeof window !== "undefined" && typeof window.fbq === "function") {
+    window.fbq("track", "PageView", {}, { eventID: eventId });
+  }
+
+  // 3. Disparo para o servidor (CAPI via n8n Webhook)
+  const capiPayload = {
+    event_name: "PageView",
+    event_id: eventId,
+    event_time: eventTime,
+    event_source_url: pageUrl,
+    fbp: fbp || undefined,
+    fbc: fbc || undefined,
+    client_user_agent: userAgent,
+  };
+
+  if (typeof fetch !== "undefined") {
+    void fetch(META_CAPI_WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(capiPayload),
+      keepalive: true,
+    }).catch((err) => {
+      console.warn("Erro no envio de PageView para CAPI:", err);
+    });
+  }
+
+  return eventId;
+}
+
 export interface TrackLeadParams {
   nome: string;
   whats: string;
@@ -58,7 +110,7 @@ export interface TrackLeadParams {
 }
 
 /**
- * Disparo duplo e deduplicado do evento de Purchase (Compra/WhatsApp)
+ * Disparo duplo e deduplicado do evento de Purchase (Compra/WhatsApp) (Navegador + Servidor + GTM)
  */
 export function trackWhatsAppPurchase(params: TrackLeadParams): string {
   const eventId = generateEventId();
@@ -68,7 +120,33 @@ export function trackWhatsAppPurchase(params: TrackLeadParams): string {
   const pageUrl = typeof window !== "undefined" ? window.location.href : "https://megadescontoblackfriday.com/";
   const userAgent = typeof navigator !== "undefined" ? navigator.userAgent : "";
 
-  // 1. Disparo no navegador via Meta Pixel com eventID
+  // 1. DataLayer para Google Tag Manager (GTM)
+  if (typeof window !== "undefined") {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "Purchase",
+      event_id: eventId,
+      ecommerce: {
+        currency: "BRL",
+        value: params.price,
+        items: [
+          {
+            item_name: `Até ${params.lentes} lentes em resina`,
+            price: params.price,
+            quantity: 1,
+          },
+        ],
+      },
+      user_data: {
+        nome: params.nome,
+        phone: params.whats,
+        email: params.email,
+        unidade: params.unidade,
+      },
+    });
+  }
+
+  // 2. Disparo no navegador via Meta Pixel com eventID
   if (typeof window !== "undefined" && typeof window.fbq === "function") {
     window.fbq(
       "track",
@@ -84,7 +162,7 @@ export function trackWhatsAppPurchase(params: TrackLeadParams): string {
     );
   }
 
-  // 2. Disparo para o servidor (CAPI via n8n Webhook) com keepalive
+  // 3. Disparo para o servidor (CAPI via n8n Webhook) com keepalive
   const capiPayload = {
     event_name: "Purchase",
     event_id: eventId,
@@ -113,7 +191,7 @@ export function trackWhatsAppPurchase(params: TrackLeadParams): string {
       body: JSON.stringify(capiPayload),
       keepalive: true,
     }).catch((err) => {
-      console.warn("Erro no envio em segundo plano para o webhook CAPI:", err);
+      console.warn("Erro no envio de Purchase para CAPI:", err);
     });
   }
 
