@@ -7,7 +7,6 @@ import { trackWhatsAppPurchase } from "@/lib/tracking";
 import { Button } from "@/components/ui/button";
 import { ResultsCarousel } from "@/components/results-carousel";
 import { CampaignFaq } from "@/components/campaign-faq";
-import initialResult from "@/assets/sorriso_mulher_marca_existente.webp.asset.json";
 
 // Troque pelo número real (com DDI 55 + DDD), só dígitos.
 const WHATSAPP = "5511912686897";
@@ -27,11 +26,11 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://megadescontoblackfriday.com/" },
       { property: "og:locale", content: "pt_BR" },
-      { property: "og:image", content: `https://megadescontoblackfriday.com${initialResult.url}` },
-      { name: "twitter:image", content: `https://megadescontoblackfriday.com${initialResult.url}` },
+      { property: "og:image", content: "https://megadescontoblackfriday.com/img/resultado-1.jpg" },
+      { name: "twitter:image", content: "https://megadescontoblackfriday.com/img/resultado-1.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "preload", href: initialResult.url, as: "image" }],
+    links: [{ rel: "preload", href: "/img/resultado-1.jpg", as: "image" }],
   }),
   component: Index,
 });
