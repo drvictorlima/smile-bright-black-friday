@@ -8,6 +8,8 @@ const slides = [
   { src: "/img/resultado-2.jpg", alt: "Resultado — sorriso realista com lentes em resina" },
   { src: "/img/resultado-3.jpg", alt: "Resultado — detalhe de perfil das lentes em resina" },
   { src: "/img/resultado-4.jpg", alt: "Resultado — estética do sorriso em ângulo com lentes em resina" },
+  { src: "/img/resultado-5.jpg", alt: "Resultado — transformação do sorriso com lentes em resina" },
+  { src: "/img/resultado-6.jpg", alt: "Resultado — sorriso feminino harmônico com lentes em resina" },
 ];
 
 export function ResultsCarousel() {
